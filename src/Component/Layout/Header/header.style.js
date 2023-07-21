@@ -73,7 +73,7 @@ export const UserContainer = styled.section`
 `;
 export const Cart = styled.div`
     & a {
-        width: 100px;
+        width: max-content;
         display: flex;
         gap: 0 5px;
         font-weight: 600;

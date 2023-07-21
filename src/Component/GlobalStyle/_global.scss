@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,600;1,700&display=swap');
+@import 'checkedbox';
 body {
     background-color: var(--backgroud-white);
 }
@@ -6,6 +7,9 @@ a {
     color: inherit;
     text-decoration: none;
     display: block;
+}
+.background-gray {
+    background-color: #f0f0f0;
 }
 .d-flex {
     display: flex;
@@ -20,9 +24,6 @@ a {
     align-items: center;
 }
 
-.background {
-    background-color: #fff;
-}
 .background-black {
     background-color: var(--primary-color);
 }
@@ -46,7 +47,7 @@ a {
     border: none;
     border-radius: 3px;
     min-width: 110px;
-    padding: 10px 12px;
+    padding: 6px 10px;
     cursor: pointer;
     text-align: center;
     white-space: nowrap;
@@ -117,7 +118,7 @@ a {
     gap: 0 15px;
 }
 .maxheight {
-    height: 100vh;
+    height: 100%;
 }
 
 #scrollbar::-webkit-scrollbar-track {
@@ -132,4 +133,13 @@ a {
 #scrollbar::-webkit-scrollbar-thumb {
     background-color: #000000;
     border: 1px solid #555555;
+}
+
+.glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }

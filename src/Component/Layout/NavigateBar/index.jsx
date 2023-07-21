@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { AiOutlineDown } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 const Nav = styled.nav`
     margin: 20px 0;
@@ -19,19 +20,19 @@ function NavigateBar() {
         <Nav>
             <ul className="align-center-flex">
                 <li>
-                    <a className="item active line-hover line-hover-gray" href="#!">
+                    <Link className="item active line-hover line-hover-gray" to="/">
                         HOME
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a className="item line-hover line-hover-gray" href="#!">
+                    <Link className="item line-hover line-hover-gray" to="/categories">
                         Danh mục sản phẩm <AiOutlineDown />
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a className="item line-hover line-hover-gray" href="#!">
+                    <Link className="item line-hover line-hover-gray" to="/">
                         Thông báo
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </Nav>

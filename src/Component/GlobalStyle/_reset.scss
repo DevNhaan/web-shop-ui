@@ -11,13 +11,12 @@ html {
 }
 body {
     font-size: 1.6rem;
-    background-color: #fff;
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 
 body,

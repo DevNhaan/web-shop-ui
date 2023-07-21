@@ -4,7 +4,7 @@ import { DefaultLayout } from './Component/Layout';
 function App() {
     return (
         <BrowserRouter>
-            <div className="App">
+            <div className="App background-gray">
                 <Routes>
                     {publicRoute.map((route) => {
                         const Component = route.component;

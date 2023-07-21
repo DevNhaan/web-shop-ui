@@ -18,12 +18,11 @@ function UserSection() {
                     <FaRegUser />
                 </User>
                 <div className="align-center-flex black-color gap-5">
-                    <Link to="/login" className="line-hover line-hover-black">
+                    <Link to="/auth/login" className="line-hover line-hover-black">
                         Đăng nhập
                     </Link>
                     /
-                    <Link to="/register" className="line-hover line-hover-black">
-                        {' '}
+                    <Link to="/auth/register" className="line-hover line-hover-black">
                         Đăng ký
                     </Link>
                 </div>
