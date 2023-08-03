@@ -1,14 +1,57 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { Form, GroupInput, Social } from '../AuthLayout.style';
+import { Form, GroupInput, Social, FieldError } from '../AuthLayout.style';
 import { FaUser, FaLock } from 'react-icons/fa';
+import { AiFillEye, AiFillEyeInvisible, AiOutlineWarning } from 'react-icons/ai';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { loginSuccess, loginFailure } from '../../../../redux/Slide/AuthSlide';
+import { isLoading, isNotLoading } from '../../../../redux/Slide/LoadingSlide';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+
+const validationSchema = yup.object({
+    username: yup.string().required('Username is required.').min(5, 'Tên đăng nhập ít nhất 5 kí tự.'),
+    password: yup
+        .string()
+        .required('Password is required.')
+        .matches(
+            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+            'Password ít nhất 8 ký tự, tồn tại 1 chữ số và một ký tự đặt biệt.',
+        ),
+});
 function LoginForm() {
-    const [user, setUser] = useState({
-        username: '',
-        password: '',
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleSubmit = async (values) => {
+        dispatch(isLoading);
+        await axios
+            .post('http://localhost:8080/api/v1/auth/login', values)
+            .then((response) => {
+                console.log(response.data);
+                response.status === 200
+                    ? dispatch(loginSuccess(response.data?.content))
+                    : dispatch(loginFailure(response.data?.errors));
+
+                dispatch(isNotLoading);
+                navigate('/');
+            })
+            .catch((error) => {
+                dispatch(loginFailure(error));
+            });
+    };
+    const formik = useFormik({
+        initialValues: { username: '', password: '' },
+        validateOnBlur: true,
+        onSubmit: handleSubmit,
+        validationSchema: validationSchema,
     });
+
     return (
-        <Form id="scrollbar">
+        <Form id="scrollbar" onSubmit={formik.handleSubmit}>
             <p className="heading-l">Login</p>
             <GroupInput>
                 <label htmlFor="username">
@@ -17,14 +60,24 @@ function LoginForm() {
                     </i>
                     Username
                 </label>
-                <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    value={user.username}
-                    placeholder="Username"
-                    onChange={(e) => setUser({ ...user, username: e.target.value })}
-                />
+                <div className="inputWrap">
+                    <input
+                        id="username"
+                        name="username"
+                        type="text"
+                        placeholder="Username"
+                        value={formik.values.username}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+                </div>
+                {formik.touched.username && formik.errors.username ? (
+                    <FieldError>
+                        <AiOutlineWarning /> {formik.errors.username}{' '}
+                    </FieldError>
+                ) : (
+                    ''
+                )}
             </GroupInput>
             <GroupInput>
                 <label htmlFor="password">
@@ -33,19 +86,34 @@ function LoginForm() {
                     </i>
                     Password
                 </label>
-                <input
-                    name="password"
-                    id="password"
-                    type="password"
-                    value={user.name}
-                    placeholder="Password"
-                    onChange={(e) => setUser({ ...user, password: e.target.value })}
-                />
+                <div className="inputWrap">
+                    <input
+                        name="password"
+                        id="password"
+                        type={showPassword ? 'text' : 'password'}
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                    />
+
+                    <span onClick={() => setShowPassword(!showPassword)} className="show-password">
+                        {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+                    </span>
+                </div>
+                {formik.touched.password && formik.errors.password ? (
+                    <FieldError>
+                        <AiOutlineWarning /> {formik.errors.password}{' '}
+                    </FieldError>
+                ) : (
+                    ''
+                )}
             </GroupInput>
             <a href="#!" className="foget-password heading-s">
                 Quên mật khẩu
             </a>
-            <button className="submit btn btn-primary">Đăng nhập</button>
+            <button type="submit" className="submit btn btn-primary" disabled={!formik.isValid}>
+                Đăng nhập
+            </button>
 
             <p className="line">or</p>
 

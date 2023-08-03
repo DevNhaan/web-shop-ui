@@ -1,16 +1,18 @@
 import Searchbar from './Searchbar';
 import UserSection from './UserSection';
-import { Logo, NavContainer } from './header.style';
-
+import { Logo, AuthContainer } from './header.style';
+import { Link } from 'react-router-dom';
 function NavBar() {
     return (
-        <NavContainer className="container align-center-flex">
-            <Logo href="/">
-                <img src="/logo-dev-shop-v3.png" alt="logo" />
+        <AuthContainer className="container align-center-flex">
+            <Logo>
+                <Link to="/">
+                    <img src="/logo-dev-shop-v3.png" alt="logo" />
+                </Link>
             </Logo>
             <Searchbar />
             <UserSection />
-        </NavContainer>
+        </AuthContainer>
     );
 }
 

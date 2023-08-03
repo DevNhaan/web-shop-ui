@@ -165,6 +165,7 @@ export const BuyBtn = styled.section`
     & button {
         display: block;
         width: 200px;
+        padding: 12px 10px;
         border-radius: 10px;
     }
     & button i {

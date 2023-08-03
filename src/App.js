@@ -1,7 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { publicRoute } from './router';
-import { DefaultLayout } from './Component/Layout';
+import { DefaultLayout, Loading } from './Component/Layout';
+import { useSelector } from 'react-redux';
 function App() {
+    const isLoading = useSelector((state) => state.loading.isLoading);
+    console.log(isLoading);
     return (
         <BrowserRouter>
             <div className="App background-gray">
@@ -25,6 +28,7 @@ function App() {
                     })}
                 </Routes>
             </div>
+            {isLoading ? <Loading /> : ''}
         </BrowserRouter>
     );
 }

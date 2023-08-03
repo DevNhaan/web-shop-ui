@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 export const TopBarContainer = styled.div`
     justify-content: space-between;
     height: 36px;
@@ -25,12 +24,16 @@ export const TopRight = styled.div`
     }
 `;
 
-export const NavContainer = styled.section`
-    position: sticky;
-    top: 0;
+export const AuthContainer = styled.section`
+    &.stick {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
     padding: 10px 0;
 `;
-export const Logo = styled.a`
+export const Logo = styled.div`
     display: flex;
     align-items: center;
     & img {

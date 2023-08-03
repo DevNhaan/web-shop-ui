@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const Container = styled.main`
-    background-color: #080710;
+    background-color: #9ed0c5;
     width: 100%;
     height: 100vh;
     position: relative;
@@ -20,23 +20,13 @@ export const Container = styled.main`
         position: absolute;
         border-radius: 50%;
     }
-    & .shape:first-child {
-        background: linear-gradient(to right, #78ffd6, #a8ff78);
-        left: -80px;
-        top: -80px;
-    }
-    & .shape:last-child {
-        background: linear-gradient(to right, #b3ffab, #12fff7);
-        right: -30px;
-        bottom: -80px;
-    }
 `;
 export const Form = styled.form`
     min-height: 600px;
     max-height: calc(100vh - 20px);
     overflow-y: scroll;
     width: 450px;
-    background-color: rgba(255, 255, 255, 0.07);
+    background-color: var(--white-color);
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -58,7 +48,6 @@ export const Form = styled.form`
     & .submit {
         margin-top: 20px;
         width: 100%;
-        text-transform: capitalize;
         font-size: 1.8rem;
         font-weight: 600;
         letter-spacing: 1px;
@@ -66,7 +55,7 @@ export const Form = styled.form`
     }
 
     & .line {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         color: var(--gray-color);
         text-decoration: underline;
         text-align: center;
@@ -76,7 +65,7 @@ export const Form = styled.form`
         margin-top: 30px;
         display: flex;
         font-size: 1.4rem;
-        color: var(--white-color);
+        color: var(--text-color);
         & a {
             font-weight: 600;
             color: var(--primary-color);
@@ -87,16 +76,16 @@ export const Form = styled.form`
 export const GroupInput = styled.div`
     display: flex;
     flex-direction: column;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--white-color);
-    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
     &:focus-within input {
         border-color: var(--primary-color);
     }
     & label {
         position: relative;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
         width: max-content;
         &:hover {
             color: var(--primary-color);
@@ -116,12 +105,23 @@ export const GroupInput = styled.div`
         margin-right: 5px;
     }
     & input {
-        border: 3px solid #fff;
+        border: 2px solid #bdc3c7;
         width: 100%;
         padding: 10px 8px;
         border-radius: 10px;
         background-color: var(--white-color);
-        margin-bottom: 15px;
+    }
+    & .inputWrap {
+        position: relative;
+    }
+    & .show-password {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        font-size: 2rem;
+        cursor: pointer;
     }
 `;
 export const Social = styled.div`
@@ -140,4 +140,11 @@ export const Social = styled.div`
         width: 30px;
         height: 30px;
     }
+`;
+export const FieldError = styled.span`
+    color: #e74c3c;
+    align-items: center;
+    gap: 0 5px;
+    font-size: 1.4rem;
+    margin-top: 10px;
 `;

@@ -4,3 +4,4 @@ export { default as TopProducts } from './TopProducts';
 export { default as NavigateBar } from './NavigateBar';
 export { default as LoginForm } from './AuthLayout/LoginForm';
 export { default as RegisterForm } from './AuthLayout/RegisterForm';
+export { default as Loading } from './Loading';

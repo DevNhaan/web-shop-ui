@@ -6,7 +6,6 @@ import {
     Container,
     MainImg,
     ListImg,
-    Nav,
     Name,
     Prize,
     Price,

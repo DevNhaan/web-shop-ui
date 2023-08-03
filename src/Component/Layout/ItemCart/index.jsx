@@ -1,6 +1,6 @@
 import Product from './Product';
 function ItemCart({ products }) {
-    const removeProduct = () => {};
+    // const removeProduct = () => {};
     return (
         <>
             {products.map((product, index) => (

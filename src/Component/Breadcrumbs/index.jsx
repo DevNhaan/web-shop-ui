@@ -22,12 +22,12 @@ function Breadcrumbs() {
                 {pathnames.map((pathname, index) => {
                     const url = `/${pathnames.slice(0, index + 1).join('/')}`;
                     return (
-                        <>
+                        <div key={index}>
                             <span className="breadcrumb-arrow">&gt;</span>
-                            <li key={url}>
+                            <li>
                                 <Link to={url}>{pathname}</Link>
                             </li>
-                        </>
+                        </div>
                     );
                 })}
             </List>
