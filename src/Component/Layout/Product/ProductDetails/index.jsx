@@ -53,21 +53,19 @@ function ProductDetails() {
 
     return (
         <>
-            <Nav>
-                HOME <span>&#62;</span> PRODUCT DETAILS
-            </Nav>
             <Container>
                 <ImageContainer>
                     <ListImg className="align-center-flex" id="scrollbar">
                         {product.images.map((image, i) => (
                             <div
+                                key={i}
                                 onClick={() => setImage(image)}
                                 className={`item ${image === currentImage ? 'active' : ''}`}
                             >
-                                <img key={i} src={image} alt="san pham" />
+                                <img src={image} alt="san pham" />
                             </div>
                         ))}
-                        <div class="force-overflow"></div>
+                        <div className="force-overflow"></div>
                     </ListImg>
                     <MainImg>
                         <img src={currentImage} alt="san pham" />
@@ -97,10 +95,11 @@ function ProductDetails() {
                     </Price>
                     <p className="heading-s">Size sản phẩm: </p>
                     <Size>
-                        {btns.map((btn) => (
+                        {btns.map((btn, i) => (
                             <button
+                                key={i}
                                 onClick={() => setSize(btn)}
-                                className={`size btn btn-s btn-outline ${btn.match(size) ? 'active' : ''}`}
+                                className={`size btn btn-s btn-outline ${btn === size ? 'active' : ''}`}
                             >
                                 {btn}
                             </button>

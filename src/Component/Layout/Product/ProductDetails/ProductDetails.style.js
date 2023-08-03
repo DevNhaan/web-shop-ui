@@ -22,6 +22,9 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 400px 1fr 300px;
     gap: 20px;
+    padding: 30px;
+    border-radius: 16px;
+    background-color: var(--white-color);
 `;
 export const ListImg = styled.div`
     flex-direction: column;
