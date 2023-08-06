@@ -16,11 +16,10 @@ export const Details = styled.div``;
 export const ImageContainer = styled.div`
     display: flex;
     gap: 10px;
-    background-color: var(--backgroud-white);
 `;
 export const Container = styled.div`
     display: grid;
-    grid-template-columns: 400px 1fr 300px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 30px;
     border-radius: 16px;
@@ -61,7 +60,7 @@ export const ListImg = styled.div`
     }
 `;
 export const MainImg = styled.div`
-    width: 100%;
+    width: 400px;
     height: 400px;
     position: relative;
     & img {
@@ -164,7 +163,7 @@ export const BuyBtn = styled.section`
     margin-top: 50px;
     & button {
         display: block;
-        width: 200px;
+        width: max-content;
         padding: 12px 10px;
         border-radius: 10px;
     }

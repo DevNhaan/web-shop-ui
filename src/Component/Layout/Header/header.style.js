@@ -83,9 +83,33 @@ export const Cart = styled.div`
     }
     color: var(--black-color);
 `;
-export const User = styled.div`
+export const User = styled.label`
     padding: 5px;
     margin-right: 5px;
     cursor: pointer;
+    display: flex;
+    gap: 0 10px;
+    & input {
+        display: hidden;
+    }
 `;
 export const CartQuantiy = styled.div``;
+
+export const Dropdown = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    background-color: var(--white-color);
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    & a {
+        color: var(--text-color);
+        padding: 12px 18px;
+        display: flex;
+        gap: 0 10px;
+        align-items: center;
+        &:hover {
+            background-color: var(--backgroud-white);
+        }
+    }
+`;

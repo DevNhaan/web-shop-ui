@@ -8,6 +8,14 @@ const List = styled.ul`
     color: var(--gray-color);
     text-transform: uppercase;
     margin: 20px 0;
+    & li a {
+        display: inline;
+        margin-left: 5px;
+        transition: all 0.5s linear;
+    }
+    & li a:hover {
+        color: var(--primary-color);
+    }
 `;
 
 function Breadcrumbs() {
@@ -22,12 +30,10 @@ function Breadcrumbs() {
                 {pathnames.map((pathname, index) => {
                     const url = `/${pathnames.slice(0, index + 1).join('/')}`;
                     return (
-                        <div key={index}>
+                        <li key={index}>
                             <span className="breadcrumb-arrow">&gt;</span>
-                            <li>
-                                <Link to={url}>{pathname}</Link>
-                            </li>
-                        </div>
+                            <Link to={url}>{pathname}</Link>
+                        </li>
                     );
                 })}
             </List>

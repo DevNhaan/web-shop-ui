@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 
 export const Container = styled.main`
     background-color: #9ed0c5;
+    background: no-repeat center center/cover url('/background-login.jpg');
     width: 100%;
     height: 100vh;
     position: relative;

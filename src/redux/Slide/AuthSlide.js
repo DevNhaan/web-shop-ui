@@ -19,6 +19,8 @@ const authSlide = createSlice({
             state.login.isLogin = true;
             state.login.error = false;
             state.login.currentUser = action.payload;
+
+            state.contentError = null;
         },
         loginFailure: (state, action) => {
             state.login.isLogin = false;
@@ -29,11 +31,13 @@ const authSlide = createSlice({
             state.register.success = true;
             state.register.error = false;
             state.contentError = null;
+            state.login.isLogin = true;
         },
         registerFailure: (state, action) => {
             state.register.success = false;
             state.register.error = true;
             state.contentError = action.payload;
+            state.login.isLogin = false;
         },
     },
 });

@@ -16,31 +16,21 @@ import {
 } from './ProductDetails.style';
 import { AiFillStar, AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { BsBagCheckFill } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 const btns = ['s', 'm', 'l', 'xl'];
-const product = {
-    name: `Áo Thun Nam Essentials Men's Regural-Fit Long-Sleeve Oxford Shirt`,
-    price: '200000',
-    quantity: 10,
-    description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta aliquam id nemo consectetur doloremque consequuntur odit provident quo! Repellendus blanditiis voluptate quibusdam autem iusto nihil, eaque fuga itaque repudiandae vitae?`,
-    star: '4.9',
-    rating: '2k3',
-    sold: '120',
-    sale: 10,
-    images: [
-        '/sanpham.jpg',
-        '/sanpham.png',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-    ],
-};
+
 function ProductDetails() {
+    const { id } = useParams();
+
+    const product = useSelector((state) => {
+        return state.product?.products.find((product) => product.id === id);
+    });
+
     const [size, setSize] = useState('s');
     const [quantity, setQuantity] = useState(1);
-    const [currentImage, setImage] = useState(product.images[0]);
+    const [currentImage, setImage] = useState(product.images[0].url);
+
     const increaseQuantity = () => {
         if (quantity >= parseInt(product.quantity)) return;
         setQuantity((prev) => prev + 1);
@@ -58,10 +48,10 @@ function ProductDetails() {
                         {product.images.map((image, i) => (
                             <div
                                 key={i}
-                                onClick={() => setImage(image)}
-                                className={`item ${image === currentImage ? 'active' : ''}`}
+                                onClick={() => setImage(image.url)}
+                                className={`item ${image.url === currentImage ? 'active' : ''}`}
                             >
-                                <img src={image} alt="san pham" />
+                                <img src={image.url} alt="san pham" />
                             </div>
                         ))}
                         <div className="force-overflow"></div>
@@ -78,7 +68,7 @@ function ProductDetails() {
                             <i>
                                 <AiFillStar />
                             </i>
-                            <span>{product.star}</span>
+                            <span>{product.likes}</span>
                         </span>
                         <span className="view">
                             <span>{product.rating}</span> Đánh giá
@@ -90,7 +80,7 @@ function ProductDetails() {
                     <p className="heading-s">Giá</p>
                     <Price>
                         <span className="original">&#8363;{Number(product.price).toLocaleString('en-US')}</span>
-                        {Number(product.price * (1 - product.sale / 100)).toLocaleString('en-US')} &#8363;
+                        {Number(product.price * (1 - product.discount / 100)).toLocaleString('en-US')} &#8363;
                     </Price>
                     <p className="heading-s">Size sản phẩm: </p>
                     <Size>

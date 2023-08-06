@@ -1,51 +1,11 @@
+import { useSelector } from 'react-redux';
 import { ProductsList } from '../Product';
 import { SectionWrap, Heading } from './TopProducts.style';
 import { Link } from 'react-router-dom';
-const products = [
-    {
-        id: '1',
-        image: '/sanpham.png',
-        title: 'title text description',
-        name: 'Name production',
-        price: '200,000',
-    },
-    {
-        id: '1',
-        image: '/sanpham.png',
-        title: 'title text description',
-        name: 'Name production',
-        price: '200,000',
-    },
-    {
-        id: '1',
-        image: '/sanpham.png',
-        title: 'title text description',
-        name: 'Name production',
-        price: '200,000',
-    },
-    {
-        id: '1',
-        image: '/sanpham.png',
-        title: 'title text description',
-        name: 'Name production',
-        price: '200,000',
-    },
-    {
-        id: '1',
-        image: '/sanpham.png',
-        title: 'title text description',
-        name: 'Name production',
-        price: '200,000',
-    },
-    {
-        id: '1',
-        image: '/sanpham.png',
-        title: 'title text description',
-        name: 'Name production',
-        price: '200,000',
-    },
-];
+import { getProducts } from '../../../redux/Selector/ProductSelector';
+
 function TopProducts() {
+    const products = useSelector(getProducts);
     return (
         <SectionWrap>
             <Heading>

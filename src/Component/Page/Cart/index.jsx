@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import Breadcrumbs from '../../Breadcrumbs';
 import ItemCart from '../../Layout/ItemCart';
-import { Left, Right, Container, ShoppingCart } from './Cart.style';
+import { Order, Right, Container, ShoppingCart } from './Cart.style';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCartByUserId } from '../../../Apis/CartApi';
+import { getUserId, getToken } from '../../../redux/Selector/AuthSelector';
+import httpRequest from '../../../Apis/request';
 const products = [
     {
         id: Math.random().toString(36).substring(2, 7),
@@ -129,7 +134,16 @@ const products = [
         ],
     },
 ];
+
 function Cart() {
+    const dispatch = useDispatch();
+    const userId = useSelector(getUserId);
+    const token = useSelector(getToken);
+    console.log('userId ', userId, 'token ', token);
+    useEffect(() => {
+        getCartByUserId(userId, dispatch, httpRequest(token));
+    }, [userId, dispatch, token]);
+
     return (
         <main className="container">
             <Breadcrumbs />
@@ -139,7 +153,7 @@ function Cart() {
                         <ItemCart products={products} />
                     </ShoppingCart>
                 </Right>
-                <Left>
+                <Order>
                     <p className="heading">Tổng cộng giỏ hàng</p>
                     <div className="row">
                         <p>Tổng</p>
@@ -153,7 +167,7 @@ function Cart() {
                     </div>
 
                     <button className="btn btn-primary">Tiến hành thanh toán</button>
-                </Left>
+                </Order>
             </Container>
         </main>
     );

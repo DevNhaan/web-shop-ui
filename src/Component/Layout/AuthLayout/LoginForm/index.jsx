@@ -23,6 +23,7 @@ const validationSchema = yup.object({
 function LoginForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [isUnauthorized, setUnauthorized] = useState(false);
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -31,11 +32,11 @@ function LoginForm() {
         await axios
             .post('http://localhost:8080/api/v1/auth/login', values)
             .then((response) => {
-                console.log(response.data);
-                response.status === 200
-                    ? dispatch(loginSuccess(response.data?.content))
-                    : dispatch(loginFailure(response.data?.errors));
-
+                if (response.status === 200) dispatch(loginSuccess(response.data?.content));
+                if (response.status === 401) {
+                    setUnauthorized(true);
+                    return;
+                }
                 dispatch(isNotLoading);
                 navigate('/');
             })
@@ -108,6 +109,11 @@ function LoginForm() {
                     ''
                 )}
             </GroupInput>
+            {isUnauthorized && (
+                <FieldError>
+                    <AiOutlineWarning /> Tài khoản và mật khẩu không đúng.
+                </FieldError>
+            )}
             <a href="#!" className="foget-password heading-s">
                 Quên mật khẩu
             </a>

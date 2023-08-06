@@ -3,7 +3,13 @@ import { styled } from 'styled-components';
 export const Container = styled.section`
     display: grid;
     grid-template-columns: 2fr 1fr;
+
     gap: 20px;
+    @media (max-width: 950px) {
+        & {
+            grid-template-columns: 1fr;
+        }
+    }
 `;
 export const Right = styled.section``;
 export const ShoppingCart = styled.section`
@@ -12,7 +18,7 @@ export const ShoppingCart = styled.section`
     display: flex;
     flex-direction: column;
 `;
-export const Left = styled.div`
+export const Order = styled.div`
     padding: 30px 20px;
     background-color: var(--white-color);
     .heading {
@@ -50,6 +56,11 @@ export const Left = styled.div`
         margin-bottom: 50px;
         & button {
             border-radius: 0;
+        }
+    }
+    @media (max-width: 950px) {
+        & {
+            width: 500px;
         }
     }
 `;
