@@ -1,12 +1,27 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { publicRoute } from './router';
-import { DefaultLayout, Loading } from './Component/Layout';
-import { useSelector } from 'react-redux';
+import { DefaultLayout } from './Component/Layout';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import getAllProduct from './Apis/ProductApi';
+import { getToken, getUserId } from './redux/Selector/AuthSelector';
+import { getCartByUserId } from './Apis/CartApi';
+import httpRequest from './Apis/request';
+
 function App() {
-    const isLoading = useSelector((state) => state.loading.isLoading);
-    console.log(isLoading);
+    const dispatch = useDispatch();
+    const userId = useSelector(getUserId);
+    const token = useSelector(getToken);
+
+    useEffect(() => {
+        getAllProduct(dispatch);
+        getCartByUserId(userId, dispatch, httpRequest(token));
+    }, [dispatch, token, userId]);
+
     return (
         <BrowserRouter>
             <div className="background-white">
@@ -42,7 +57,6 @@ function App() {
                 pauseOnHover
                 theme="light"
             />
-            {isLoading ? <Loading /> : ''}
         </BrowserRouter>
     );
 }

@@ -39,7 +39,11 @@ const authSlide = createSlice({
             state.contentError = action.payload;
             state.login.isLogin = false;
         },
+        logoutSuccess: (state) => {
+            state.login.isLogin = false;
+            state.login.currentUser = {};
+        },
     },
 });
 export default authSlide;
-export const { loginSuccess, loginFailure, registerSuccess, registerFailure } = authSlide.actions;
+export const { loginSuccess, loginFailure, registerSuccess, registerFailure, logoutSuccess } = authSlide.actions;

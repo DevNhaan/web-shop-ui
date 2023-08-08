@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 export const Container = styled.main`
     display: flex;
+    margin-bottom: 200px;
 `;
 export const Avatar = styled.div`
     position: relative;

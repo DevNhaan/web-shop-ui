@@ -21,7 +21,7 @@ function Profile() {
     };
 
     return (
-        <Container className="container">
+        <Container ainer className="container">
             <Avatar>
                 <img src="/user.png" alt="user_image" />
                 <span>

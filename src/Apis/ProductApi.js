@@ -1,13 +1,14 @@
-import { isLoading, isNotLoading } from '../redux/Slide/LoadingSlide';
 import { getProductsSuccess } from '../redux/Slide/ProductSlide';
+import { request } from '../Untils/request';
 
-export const getAllProducts = async (dispatch, axiosJwt) => {
+const getAllProduct = async (dispatch) => {
     try {
-        dispatch(isLoading);
-        const response = await axiosJwt.get('products');
+        console.log('product rerender');
+        const response = await request.get('products');
         dispatch(getProductsSuccess(response.data.content));
-        dispatch(isNotLoading);
     } catch (error) {
         console.log(error);
     }
 };
+
+export default getAllProduct;

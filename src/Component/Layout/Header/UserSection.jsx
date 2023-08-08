@@ -2,18 +2,25 @@ import { UserContainer, Cart, User, CartQuantiy, Dropdown } from './header.style
 import { TiShoppingCart, TiDocumentText } from 'react-icons/ti';
 import { FaRegUser } from 'react-icons/fa';
 import { AiOutlineLogout } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { currentUserSelector, isLogin } from '../../../redux/Selector/AuthSelector';
 import Tippy from '@tippyjs/react';
+import { logoutSuccess } from '../../../redux/Slide/AuthSlide';
+import { cartLogout } from '../../../redux/Slide/CartSlide';
 
 function UserSection() {
     const isLoginState = useSelector(isLogin);
     const userDetails = useSelector(currentUserSelector);
-
-    console.log(userDetails);
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        console.log('logout');
+        dispatch(cartLogout());
+        dispatch(logoutSuccess());
+        navigate('/auth/login');
+    };
     return (
         <UserContainer className="align-center-flex">
             <Cart>
@@ -39,10 +46,10 @@ function UserSection() {
                                 <Link to="/my-cart">
                                     <TiShoppingCart /> Giỏ hàng của tôi
                                 </Link>
-                                <Link to="/logout">
+                                <div onClick={handleLogout}>
                                     <AiOutlineLogout />
                                     Đăng xuất
-                                </Link>
+                                </div>
                             </Dropdown>
                         }
                         animation="fade"

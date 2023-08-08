@@ -4,7 +4,7 @@ import { Form, GroupInput, Social, FieldError } from '../AuthLayout.style';
 import { FaUser, FaLock } from 'react-icons/fa';
 import { AiFillEye, AiFillEyeInvisible, AiOutlineWarning } from 'react-icons/ai';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess, loginFailure } from '../../../../redux/Slide/AuthSlide';
 import { isLoading, isNotLoading } from '../../../../redux/Slide/LoadingSlide';
 import { useFormik } from 'formik';
@@ -23,7 +23,7 @@ const validationSchema = yup.object({
 function LoginForm() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [isUnauthorized, setUnauthorized] = useState(false);
+    const isUnauthorized = useSelector((state) => state.auth.login.error);
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -33,10 +33,7 @@ function LoginForm() {
             .post('http://localhost:8080/api/v1/auth/login', values)
             .then((response) => {
                 if (response.status === 200) dispatch(loginSuccess(response.data?.content));
-                if (response.status === 401) {
-                    setUnauthorized(true);
-                    return;
-                }
+
                 dispatch(isNotLoading);
                 navigate('/');
             })

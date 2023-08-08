@@ -2,12 +2,12 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 const httpRequest = (token) => {
+    if (token === undefined) return null;
     const axiosJwt = axios.create({
         baseURL: 'http://localhost:8080/api/v1/',
     });
     axiosJwt.interceptors.request.use(
         (config) => {
-            if (token === undefined) return config;
             const decodedToken = jwtDecode(token);
             const expirationTime = decodedToken.exp * 1000;
 

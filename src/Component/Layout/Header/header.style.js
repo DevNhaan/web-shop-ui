@@ -102,7 +102,9 @@ export const Dropdown = styled.div`
     background-color: var(--white-color);
     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
     z-index: 10000;
-    & a {
+    & a,
+    & div {
+        cursor: pointer;
         color: var(--text-color);
         padding: 12px 18px;
         display: flex;
