@@ -1,38 +1,47 @@
 import { RiDeleteBack2Fill } from 'react-icons/ri';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import { Wrap, QuantityBtn, Name, Price } from './ItemCart.style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
-    increaseQuantityItem,
-    descreseQuantityItem,
-    setTotal,
     addItemToCartItemUserSelect,
     removeItemToCartItemUserSelect,
     updateNumberOfItem,
+    updateTotal,
+    updateTotalOriginal,
 } from '../../../redux/Slide/CartSlide';
-import { memo } from 'react';
 
-function Item({ item, isCheckedAll, itemChecked }) {
+import { memo } from 'react';
+import { getToken } from '../../../redux/Selector/AuthSelector';
+import httpRequest from '../../../Apis/request';
+import { changeQuantity } from '../../../Apis/CartApi';
+
+function Item({ item, itemChecked }) {
     const dispatch = useDispatch();
     const { id, product, quantity } = item;
-    const [isChecked, setIsChecked] = useState(isCheckedAll ? true : itemChecked);
+    const [isChecked, setIsChecked] = useState(itemChecked);
+    const token = useSelector(getToken);
+    const isItemInUserSelect = itemChecked;
+
+    useEffect(() => {
+        setIsChecked(isItemInUserSelect);
+    }, [isItemInUserSelect]);
 
     const updateStore = () => {
         dispatch(updateNumberOfItem());
-        dispatch(setTotal());
+        dispatch(updateTotal());
+        dispatch(updateTotalOriginal());
     };
     const increaseQtt = () => {
         if (quantity < product.quantity) {
-            dispatch(increaseQuantityItem(id));
-            updateStore();
+            changeQuantity({ cartItemId: id, type: 'INCREASE' }, dispatch, httpRequest(token));
         }
     };
     const decreaseQtt = () => {
         if (quantity > 0) {
-            dispatch(descreseQuantityItem(id));
-            updateStore();
+            changeQuantity({ cartItemId: id, type: 'DECREASE' }, dispatch, httpRequest(token));
         }
     };
     const handleChecked = () => {
@@ -44,8 +53,10 @@ function Item({ item, isCheckedAll, itemChecked }) {
         updateStore();
         setIsChecked(!isChecked);
     };
+
+    const handleDelete = () => {};
     return (
-        <Wrap className="item">
+        <Wrap className={`item ${isChecked && 'active'}`}>
             <p>
                 <input type="checkbox" id={id} checked={isChecked} onChange={() => handleChecked()} />
                 <label htmlFor={id}></label>
@@ -69,7 +80,7 @@ function Item({ item, isCheckedAll, itemChecked }) {
 
             <Price>{Number(product.price * (1 - product.discount / 100)).toLocaleString('en-US')} &#8363;</Price>
 
-            <div className="delte-btn btn btn-s">
+            <div onClick={() => handleDelete()} className="delte-btn btn btn-s">
                 <RiDeleteBack2Fill />
             </div>
         </Wrap>

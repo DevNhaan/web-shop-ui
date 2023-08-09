@@ -9,31 +9,34 @@ import {
 } from '../../../redux/Selector/CartSelector';
 import { Order, Container, CartItems, Name, Header } from './ItemCart.style';
 import { memo, useState } from 'react';
-import { selectAllCartItem, setTotal, unSelectAllCartItem, updateNumberOfItem } from '../../../redux/Slide/CartSlide';
+import {
+    selectAllCartItem,
+    unSelectAllCartItem,
+    updateNumberOfItem,
+    updateTotal,
+    updateTotalOriginal,
+} from '../../../redux/Slide/CartSlide';
 
 function ItemCart() {
     const dispatch = useDispatch();
     const [...items] = useSelector(getCartItem);
-    console.log(items);
     const [isCheckedAll, setIsCheckedAll] = useState(false);
-
     const itemUserSelect = useSelector(getCartItemUserSelect);
 
-    console.log(itemUserSelect);
     const numOfItem = useSelector(getNumberOfItem);
     const total = useSelector(getTotal);
     const priceSaving = useSelector(getPriceSaving);
 
     const handleChecked = () => {
+        setIsCheckedAll(!isCheckedAll);
         if (!isCheckedAll) {
             dispatch(selectAllCartItem());
-
-            dispatch(updateNumberOfItem());
-            dispatch(setTotal());
         } else {
             dispatch(unSelectAllCartItem());
         }
-        setIsCheckedAll(!isCheckedAll);
+        dispatch(updateNumberOfItem());
+        dispatch(updateTotal());
+        dispatch(updateTotalOriginal());
     };
     return (
         <Container>
@@ -71,15 +74,15 @@ function ItemCart() {
                 <p className="heading">Tổng cộng giỏ hàng</p>
                 <div className="row">
                     <p>Số lượng sản phẩm</p>
-                    <span>{numOfItem}</span>
+                    <span>{numOfItem || 0}</span>
                 </div>
                 <div className="row">
                     <p>Tiết kiệm</p>
-                    <span>{Number(priceSaving).toLocaleString('en-US')} &#8363;</span>
+                    <span>{priceSaving && Number(priceSaving).toLocaleString('en-US')} &#8363;</span>
                 </div>
                 <div className="row">
                     <p>Tổng thanh toán</p>
-                    <span>{Number(total).toLocaleString('en-US')} &#8363;</span>
+                    <span>{total && Number(total).toLocaleString('en-US')} &#8363;</span>
                 </div>
                 <span className="line"></span>
 

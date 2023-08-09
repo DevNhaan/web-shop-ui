@@ -6,6 +6,7 @@ export const Wrap = styled.div`
     display: flex;
     align-items: center;
     gap: 0 20px;
+    transition: all 0.3s ease-in-out;
     & .image {
         width: 80px;
         height: 80px;
@@ -26,6 +27,12 @@ export const Wrap = styled.div`
         flex-shrink: 0;
         color: #e74c3c;
         font-size: 2rem;
+    }
+    &.active {
+        background: var(--primary-background-hover);
+    }
+    &:hover {
+        background: var(--primary-background-hover);
     }
 `;
 

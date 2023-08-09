@@ -12,11 +12,8 @@ const httpRequest = (token) => {
             const expirationTime = decodedToken.exp * 1000;
 
             console.log('expriration tim: ', expirationTime, 'now ', Date.now());
-
-            // config.method = method;
             if (Date.now() < expirationTime) config.headers['Authorization'] = `Bearer ${token}`;
 
-            // config.url = path;
             return config;
         },
         function (error) {

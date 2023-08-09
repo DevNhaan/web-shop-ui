@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loginSuccess, loginFailure, registerSuccess, registerFailure } from '../redux/Slide/AuthSlide';
+import { loginSuccess, loginFailure, registerFailure } from '../redux/Slide/AuthSlide';
 import { isLoading, isNotLoading } from '../redux/Slide/LoadingSlide';
 
 export const login = async (loginDto, dispatch, navigate) => {

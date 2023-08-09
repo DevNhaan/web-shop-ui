@@ -1,28 +1,47 @@
-import { isLoading, isNotLoading } from '../redux/Slide/LoadingSlide';
-import { setCart } from '../redux/Slide/CartSlide';
+import {
+    addCartItem,
+    setCart,
+    updateNumberOfItem,
+    updateTotal,
+    updateTotalOriginal,
+    changeQuantityCartItem,
+} from '../../src/redux/Slide/CartSlide';
+
+import { toast } from 'react-toastify';
 
 export const getCartByUserId = async (userId, dispatch, httpRequest) => {
     if (httpRequest === null) return null;
     try {
-        dispatch(isLoading);
         const response = await httpRequest.get(`cart/${userId}`);
-
-        console.log(response.data.content);
-
         dispatch(setCart(response.data?.content));
-        dispatch(isNotLoading);
     } catch (error) {
         console.log(error);
-        dispatch(isNotLoading);
     }
 };
 export const addProductToCart = async (data, dispatch, httpRequest) => {
     if (httpRequest === null) return null;
     try {
-        dispatch(isLoading);
-        const response = await httpRequest.post('cart/add-product', { data });
+        const response = await httpRequest.post('cart/add-product', data);
 
-        console.log(response.data.content);
+        dispatch(addCartItem(response.data.content));
+
+        dispatch(updateNumberOfItem());
+        dispatch(updateTotal());
+        dispatch(updateTotalOriginal());
+
+        toast.success('Thêm sản phẩm thành công');
+    } catch (error) {
+        console.log(error);
+    }
+};
+export const changeQuantity = async (data, dispatch, httpRequest) => {
+    if (httpRequest === null) return null;
+    try {
+        const response = await httpRequest.put(`cart/cart-item/update/${data.cartItemId}/${data.type}`);
+        dispatch(changeQuantityCartItem(response.data.content));
+        dispatch(updateNumberOfItem());
+        dispatch(updateTotal());
+        dispatch(updateTotalOriginal());
     } catch (error) {
         console.log(error);
     }

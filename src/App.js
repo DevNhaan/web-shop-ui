@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { publicRoute } from './router';
 import { DefaultLayout } from './Component/Layout';
 import { ToastContainer } from 'react-toastify';
