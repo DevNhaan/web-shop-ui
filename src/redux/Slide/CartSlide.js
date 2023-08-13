@@ -37,11 +37,15 @@ const cartSlide = createSlice({
             const newItem = list.filter((obj) => !list.includes(obj.id));
             console.log(newItem);
             if (newItem) {
-                state.cartItemUserSelect.push(newItem.id);
+                state.cartItemUserSelect = [...state.cartItemUserSelect, ...newItem];
             }
             state.cartItem = action.payload.items;
         },
-        removeItem: (state, action) => {},
+        removeItem: (state, action) => {
+            state.cartItem = state.cartItem.filter((item) => item.id !== action.payload);
+            if (state.cartItemUserSelect.includes(action.payload))
+                state.cartItemUserSelect = state.cartItemUserSelect.filter((item) => item !== action.payload);
+        },
         cartLogout: (state) => {
             state.cartItem = [];
             state.total = 0;

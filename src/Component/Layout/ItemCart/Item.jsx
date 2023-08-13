@@ -1,5 +1,6 @@
 import { RiDeleteBack2Fill } from 'react-icons/ri';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus, AiFillWarning } from 'react-icons/ai';
+import { FaTimes } from 'react-icons/fa';
 import { Wrap, QuantityBtn, Name, Price } from './ItemCart.style';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -15,15 +16,22 @@ import {
 
 import { memo } from 'react';
 import { getToken } from '../../../redux/Selector/AuthSelector';
+
+import { changeQuantity, deleteCartItem } from '../../../Apis/CartApi';
+
+// Pop up
+import Popup from 'reactjs-popup';
 import httpRequest from '../../../Apis/request';
-import { changeQuantity } from '../../../Apis/CartApi';
 
 function Item({ item, itemChecked }) {
     const dispatch = useDispatch();
     const { id, product, quantity } = item;
     const [isChecked, setIsChecked] = useState(itemChecked);
     const token = useSelector(getToken);
+
     const isItemInUserSelect = itemChecked;
+
+    let axiosJwt = httpRequest(token, dispatch);
 
     useEffect(() => {
         setIsChecked(isItemInUserSelect);
@@ -36,12 +44,12 @@ function Item({ item, itemChecked }) {
     };
     const increaseQtt = () => {
         if (quantity < product.quantity) {
-            changeQuantity({ cartItemId: id, type: 'INCREASE' }, dispatch, httpRequest(token));
+            changeQuantity({ cartItemId: id, type: 'INCREASE' }, dispatch, axiosJwt);
         }
     };
     const decreaseQtt = () => {
         if (quantity > 0) {
-            changeQuantity({ cartItemId: id, type: 'DECREASE' }, dispatch, httpRequest(token));
+            changeQuantity({ cartItemId: id, type: 'DECREASE' }, dispatch, axiosJwt);
         }
     };
     const handleChecked = () => {
@@ -54,7 +62,9 @@ function Item({ item, itemChecked }) {
         setIsChecked(!isChecked);
     };
 
-    const handleDelete = () => {};
+    const handleDelete = () => {
+        deleteCartItem(id, dispatch, axiosJwt);
+    };
     return (
         <Wrap className={`item ${isChecked && 'active'}`}>
             <p>
@@ -80,9 +90,48 @@ function Item({ item, itemChecked }) {
 
             <Price>{Number(product.price * (1 - product.discount / 100)).toLocaleString('en-US')} &#8363;</Price>
 
-            <div onClick={() => handleDelete()} className="delte-btn btn btn-s">
-                <RiDeleteBack2Fill />
-            </div>
+            <Popup
+                trigger={
+                    <button className="button">
+                        <div className="delte-btn btn btn-s">
+                            <RiDeleteBack2Fill />
+                        </div>
+                    </button>
+                }
+                modal
+            >
+                {(close) => (
+                    <div className="modal">
+                        <button className="modal_close" onClick={close}>
+                            <FaTimes />
+                        </button>
+                        <div className="modal_header"> Xóa sản phẩm </div>
+                        <div className="modal_content">
+                            <AiFillWarning /> Bạn có chắc chắn muốn xóa sản phẩm này trong giỏ hàng của mình không.
+                        </div>
+                        <div className="modal_actions">
+                            <button
+                                onClick={() => {
+                                    handleDelete();
+                                    close();
+                                }}
+                                className="modal_button_action btn warning"
+                            >
+                                Xóa sản phẩm
+                            </button>
+
+                            <button
+                                className="btn modal_button_action cancel"
+                                onClick={() => {
+                                    close();
+                                }}
+                            >
+                                Hủy
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </Popup>
         </Wrap>
     );
 }

@@ -2,10 +2,13 @@ import { authSlide, productSlide, cartSlide, loadingSlide } from './Slide';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+// import thunk from 'redux-thunk';
+// import TokenMiddleware from './Middleware/TokenMiddleware';
 
 const persistConfig = {
     key: 'root',
     storage,
+    whitelist: ['auth', 'cart'],
 };
 
 const rootReducer = combineReducers({

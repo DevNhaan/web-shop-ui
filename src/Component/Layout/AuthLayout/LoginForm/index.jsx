@@ -30,7 +30,7 @@ function LoginForm() {
     const handleSubmit = async (values) => {
         dispatch(isLoading);
         await axios
-            .post('http://localhost:8080/api/v1/auth/login', values)
+            .post('http://localhost:8080/api/v1/auth/login', values, { withCredentials: true })
             .then((response) => {
                 if (response.status === 200) dispatch(loginSuccess(response.data?.content));
 

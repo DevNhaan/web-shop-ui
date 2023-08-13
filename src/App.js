@@ -16,11 +16,12 @@ function App() {
     const dispatch = useDispatch();
     const userId = useSelector(getUserId);
     const token = useSelector(getToken);
+    let axiosJwt = httpRequest(token, dispatch);
 
     useEffect(() => {
+        getCartByUserId(userId, dispatch, axiosJwt);
         getAllProduct(dispatch);
-        getCartByUserId(userId, dispatch, httpRequest(token));
-    }, [dispatch, token, userId]);
+    }, [axiosJwt, dispatch, userId]);
 
     return (
         <BrowserRouter>

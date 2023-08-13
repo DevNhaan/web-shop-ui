@@ -7,19 +7,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentUserSelector, isLogin } from '../../../redux/Selector/AuthSelector';
 import Tippy from '@tippyjs/react';
-import { logoutSuccess } from '../../../redux/Slide/AuthSlide';
-import { cartLogout } from '../../../redux/Slide/CartSlide';
+import { logout } from '../../../Apis/AuthApi';
 
 function UserSection() {
     const isLoginState = useSelector(isLogin);
     const userDetails = useSelector(currentUserSelector);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const handleLogout = () => {
-        console.log('logout');
-        dispatch(cartLogout());
-        dispatch(logoutSuccess());
-        navigate('/auth/login');
+        logout(dispatch, navigate);
     };
     return (
         <UserContainer className="align-center-flex">

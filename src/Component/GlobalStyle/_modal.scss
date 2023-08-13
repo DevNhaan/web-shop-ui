@@ -1,0 +1,70 @@
+.modal {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_header {
+        font-size: 1.8rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    &_content {
+        max-width: 400px;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    &_actions {
+        display: flex;
+        gap: 0 20px;
+    }
+
+    &_button_action {
+        padding: 8px 0;
+        &.warning {
+            color: #fff;
+            background-color: #e74c3c;
+        }
+        &.cancel {
+            border: 2px solid #ccc;
+            &:hover {
+                background-color: #ccc;
+                color: #fff;
+            }
+        }
+    }
+
+    &_close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #e74c3c;
+        padding: 5px;
+        opacity: 0.8;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.popup-content {
+    margin: auto;
+    background: rgb(255, 255, 255);
+    width: 40%;
+    padding: 5px;
+    border-radius: 10px;
+}
+.popup-arrow {
+    color: rgb(255, 255, 255);
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}

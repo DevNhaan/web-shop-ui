@@ -4,7 +4,7 @@ const authSlide = createSlice({
     name: 'auth',
     initialState: {
         login: {
-            currentUser: {},
+            currentUser: null,
             isLogin: false,
             error: false,
         },
@@ -41,9 +41,16 @@ const authSlide = createSlice({
         },
         logoutSuccess: (state) => {
             state.login.isLogin = false;
-            state.login.currentUser = {};
+            state.login.currentUser = null;
+            state.register.success = false;
+            state.register.error = false;
+            state.contentError = null;
+        },
+        setToken: (state, action) => {
+            state.login.currentUser.token = action.payload;
         },
     },
 });
 export default authSlide;
-export const { loginSuccess, loginFailure, registerSuccess, registerFailure, logoutSuccess } = authSlide.actions;
+export const { loginSuccess, loginFailure, registerSuccess, registerFailure, logoutSuccess, setToken } =
+    authSlide.actions;

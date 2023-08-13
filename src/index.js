@@ -11,7 +11,7 @@ import { Loading } from './Component/Layout';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-    <Provider store={store} stabilityCheck="always">
+    <Provider store={store}>
         <GlobalStyle>
             <PersistGate loading={<Loading />} persistor={persistor}>
                 <App />
