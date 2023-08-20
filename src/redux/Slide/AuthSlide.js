@@ -19,7 +19,6 @@ const authSlide = createSlice({
             state.login.isLogin = true;
             state.login.error = false;
             state.login.currentUser = action.payload;
-
             state.contentError = null;
         },
         loginFailure: (state, action) => {
@@ -49,8 +48,39 @@ const authSlide = createSlice({
         setToken: (state, action) => {
             state.login.currentUser.token = action.payload;
         },
+        deleteAddressAction: (state, action) => {
+            state.login.currentUser.userDetail.userAddress = state.login.currentUser.userDetail.userAddress.filter(
+                (a) => a.id !== action.payload,
+            );
+        },
+        addAddressAction: (state, action) => {
+            const addressId = state.login.currentUser.userDetail.userAddress.map((i) => i.id);
+
+            const newAddress = action.payload.find((address) => !addressId.includes(address.id));
+            if (newAddress) {
+                state.login.currentUser.userDetail.defaultAddress = newAddress.id;
+            }
+
+            state.login.currentUser.userDetail.userAddress = action.payload;
+        },
+        setDefaultAddress: (state, action) => {
+            state.login.currentUser.userDetail.defaultAddress = action.payload;
+        },
+        updateUserDtails: (state, action) => {
+            state.login.currentUser.userDetail = action.payload;
+        },
     },
 });
 export default authSlide;
-export const { loginSuccess, loginFailure, registerSuccess, registerFailure, logoutSuccess, setToken } =
-    authSlide.actions;
+export const {
+    loginSuccess,
+    loginFailure,
+    registerSuccess,
+    registerFailure,
+    logoutSuccess,
+    setToken,
+    deleteAddressAction,
+    addAddressAction,
+    updateUserDtails,
+    setDefaultAddress,
+} = authSlide.actions;

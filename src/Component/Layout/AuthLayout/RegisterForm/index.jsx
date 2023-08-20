@@ -85,7 +85,7 @@ function RegisterForm() {
                 </div>
                 {formik.touched.username && formik.errors.username ? (
                     <FieldError>
-                        <AiOutlineWarning /> {formik.errors.username}{' '}
+                        <AiOutlineWarning /> {formik.errors.username}
                     </FieldError>
                 ) : (
                     ''

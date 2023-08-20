@@ -1,10 +1,10 @@
 import { Description, ProductImg, ListWrap, Button } from './ProductsList.style';
 import { Link, useNavigate } from 'react-router-dom';
-import { AiFillStar } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import { getToken, getUserId } from '../../../../redux/Selector/AuthSelector';
 import { addProductToCart } from '../../../../Apis/CartApi';
 import httpRequest from '../../../../Apis/request';
+import { AiOutlineStar } from 'react-icons/ai';
 
 function ProductsList({ products }) {
     const dispatch = useDispatch();
@@ -47,13 +47,13 @@ function ProductsList({ products }) {
                             <Description className="description">
                                 <span className="title">{product?.title}</span>
                                 <p className="name">{product?.name}</p>
-                                <span className="star">
-                                    <AiFillStar />
-                                    <AiFillStar />
-                                    <AiFillStar />
-                                    <AiFillStar />
-                                    <AiFillStar />
-                                </span>
+                                <div className="star">
+                                    <AiOutlineStar />
+                                    <AiOutlineStar />
+                                    <AiOutlineStar />
+                                    <AiOutlineStar />
+                                    <AiOutlineStar />
+                                </div>
                                 <p className="price">{Number(product.price).toLocaleString('en-US')}VND</p>
                             </Description>
                         </Link>

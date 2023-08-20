@@ -66,8 +66,15 @@ export const Searchbox = styled.section`
         flex: 1;
         padding: 8px 12px;
     }
-    button {
-        display: block;
+    .search-icon {
+        width: 40px;
+        padding: 10px;
+        background-color: var(--primary-color);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
     }
 `;
 export const UserContainer = styled.section`
@@ -111,7 +118,7 @@ export const Dropdown = styled.div`
         gap: 0 10px;
         align-items: center;
         &:hover {
-            background-color: var(--backgroud-white);
+            background-color: var(--background-white);
         }
     }
 `;

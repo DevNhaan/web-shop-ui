@@ -88,7 +88,7 @@ function ProductDetails() {
                             <button
                                 key={i}
                                 onClick={() => setSize(btn)}
-                                className={`size btn btn-s btn-outline ${btn === size ? 'active' : ''}`}
+                                className={`size btn btn-outline ${btn === size ? 'active' : ''}`}
                             >
                                 {btn}
                             </button>
@@ -98,14 +98,14 @@ function ProductDetails() {
                     <Quantity>
                         <button
                             onClick={() => decreaseQuantity()}
-                            className={`up btn btn-outline btn-s ${quantity > 0 ? '' : 'disable'}`}
+                            className={`up btn btn-outline ${quantity > 0 ? '' : 'disable'}`}
                         >
                             <AiOutlineMinus />
                         </button>
                         <p className="quantity">{quantity}</p>
                         <button
                             onClick={() => increaseQuantity()}
-                            className={`up btn btn-outline btn-s ${quantity >= product.quantity ? 'disable' : ' '}`}
+                            className={`up btn btn-outline ${quantity >= product.quantity ? 'disable' : ' '}`}
                         >
                             <AiOutlinePlus />
                         </button>

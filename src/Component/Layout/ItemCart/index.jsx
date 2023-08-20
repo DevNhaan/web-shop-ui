@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import './checkedbox.scss';
 import Item from './Item';
 import {
     getCartItem,
@@ -16,6 +17,7 @@ import {
     updateTotal,
     updateTotalOriginal,
 } from '../../../redux/Slide/CartSlide';
+import { Link } from 'react-router-dom';
 
 function ItemCart() {
     const dispatch = useDispatch();
@@ -91,7 +93,9 @@ function ItemCart() {
                     <button className="btn btn-outline">Áp dụng</button>
                 </div>
 
-                <button className="btn btn-primary">Mua hàng</button>
+                <Link to="/checkout" className="btn btn-primary btn-full">
+                    Mua hàng
+                </Link>
             </Order>
         </Container>
     );

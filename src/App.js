@@ -11,17 +11,23 @@ import getAllProduct from './Apis/ProductApi';
 import { getToken, getUserId } from './redux/Selector/AuthSelector';
 import { getCartByUserId } from './Apis/CartApi';
 import httpRequest from './Apis/request';
+import { getProducts } from './redux/Selector/ProductSelector';
 
 function App() {
     const dispatch = useDispatch();
     const userId = useSelector(getUserId);
     const token = useSelector(getToken);
+    const products = useSelector(getProducts);
     let axiosJwt = httpRequest(token, dispatch);
 
     useEffect(() => {
-        getCartByUserId(userId, dispatch, axiosJwt);
-        getAllProduct(dispatch);
-    }, [axiosJwt, dispatch, userId]);
+        if (token) {
+            getCartByUserId(userId, dispatch, axiosJwt);
+        }
+        if (products.length === 0) {
+            getAllProduct(dispatch);
+        }
+    }, [products, token, axiosJwt, dispatch, userId]);
 
     return (
         <BrowserRouter>

@@ -51,7 +51,7 @@ function UserSection() {
                         }
                         animation="fade"
                         arrow={true}
-                        trigger="click"
+                        trigger="mouseenter click"
                         interactive={true}
                         placement="bottom"
                     >

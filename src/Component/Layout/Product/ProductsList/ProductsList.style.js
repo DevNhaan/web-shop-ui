@@ -23,11 +23,7 @@ export const Description = styled.div`
 
     padding: 16px;
     text-transform: uppercase;
-    & span {
-        font-size: 1.3rem;
-        color: var(--gray-color);
-        white-space: 2px;
-    }
+
     & .name {
         flex: 1;
         text-align: center;
@@ -35,13 +31,12 @@ export const Description = styled.div`
         font-size: 2rem;
         color: var(--black-color);
     }
-    & .star {
-        margin: 10px 0;
-        color: #f1c40f;
-    }
     & .price {
         font-size: 2rem;
         font-weight: 700;
+    }
+    & .star {
+        font-size: 1.4rem;
     }
 `;
 export const ProductImg = styled.div`
