@@ -5,7 +5,7 @@ export const Heading = styled.section`
     align-items: center;
     gap: 20px 0;
     h1 {
-        font-size: 3rem;
+        font-size: 2.6rem;
         font-weight: 700;
     }
     margin: 60px 0;

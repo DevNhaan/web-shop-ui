@@ -1,5 +1,5 @@
-import { Home, Login, DetailsProduct } from '../Component/Page';
-import { DefaultLayout, LoginLayout } from '../Component/Layout';
+import { Home, Login, Register, DetailsProduct, Cart, Profile, CheckoutDetails, Address } from '../Component/Page';
+import { DefaultLayout, AuthLayout } from '../Component/Layout';
 export const publicRoute = [
     {
         path: '/',
@@ -7,12 +7,36 @@ export const publicRoute = [
         layout: DefaultLayout,
     },
     {
-        path: '/login',
+        path: '/auth/login',
         component: Login,
-        layout: LoginLayout,
+        layout: AuthLayout,
     },
     {
-        path: '/details/1',
+        path: '/auth/register',
+        component: Register,
+        layout: AuthLayout,
+    },
+    {
+        path: '/details/:id',
         component: DetailsProduct,
+    },
+    {
+        path: '/profile',
+        component: Profile,
+    },
+    {
+        path: '/my-cart',
+        component: Cart,
+        layout: DefaultLayout,
+    },
+    {
+        path: '/checkout',
+        component: CheckoutDetails,
+        layout: DefaultLayout,
+    },
+    {
+        path: '/user-address',
+        component: Address,
+        layout: DefaultLayout,
     },
 ];

@@ -5,19 +5,18 @@
 }
 html {
     font-size: 62.5%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     line-height: 1.5;
 }
 body {
     font-size: 1.6rem;
-    background-color: #fff;
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
 
 body,
@@ -59,4 +58,12 @@ button {
     display: block;
     background-color: transparent;
     cursor: pointer;
+}
+textarea {
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    resize: none;
+    overflow: auto;
+    outline: none;
+    font-size: 1.6rem;
 }

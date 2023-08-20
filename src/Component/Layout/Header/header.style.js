@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 export const TopBarContainer = styled.div`
     justify-content: space-between;
     height: 36px;
@@ -25,12 +24,16 @@ export const TopRight = styled.div`
     }
 `;
 
-export const NavContainer = styled.section`
-    position: sticky;
-    top: 0;
+export const AuthContainer = styled.section`
+    &.stick {
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
     padding: 10px 0;
 `;
-export const Logo = styled.a`
+export const Logo = styled.div`
     display: flex;
     align-items: center;
     & img {
@@ -63,8 +66,15 @@ export const Searchbox = styled.section`
         flex: 1;
         padding: 8px 12px;
     }
-    button {
-        display: block;
+    .search-icon {
+        width: 40px;
+        padding: 10px;
+        background-color: var(--primary-color);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
     }
 `;
 export const UserContainer = styled.section`
@@ -73,16 +83,42 @@ export const UserContainer = styled.section`
 `;
 export const Cart = styled.div`
     & a {
-        width: 100px;
+        width: max-content;
         display: flex;
         gap: 0 5px;
         font-weight: 600;
     }
     color: var(--black-color);
 `;
-export const User = styled.div`
+export const User = styled.label`
     padding: 5px;
     margin-right: 5px;
     cursor: pointer;
+    display: flex;
+    gap: 0 10px;
+    & input {
+        display: hidden;
+    }
 `;
 export const CartQuantiy = styled.div``;
+
+export const Dropdown = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    background-color: var(--white-color);
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+    & a,
+    & div {
+        cursor: pointer;
+        color: var(--text-color);
+        padding: 12px 18px;
+        display: flex;
+        gap: 0 10px;
+        align-items: center;
+        &:hover {
+            background-color: var(--background-white);
+        }
+    }
+`;

@@ -6,7 +6,6 @@ import {
     Container,
     MainImg,
     ListImg,
-    Nav,
     Name,
     Prize,
     Price,
@@ -17,31 +16,21 @@ import {
 } from './ProductDetails.style';
 import { AiFillStar, AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
 import { BsBagCheckFill } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 const btns = ['s', 'm', 'l', 'xl'];
-const product = {
-    name: `Áo Thun Nam Essentials Men's Regural-Fit Long-Sleeve Oxford Shirt`,
-    price: '200000',
-    quantity: 10,
-    description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta aliquam id nemo consectetur doloremque consequuntur odit provident quo! Repellendus blanditiis voluptate quibusdam autem iusto nihil, eaque fuga itaque repudiandae vitae?`,
-    star: '4.9',
-    rating: '2k3',
-    sold: '120',
-    sale: 10,
-    images: [
-        '/sanpham.jpg',
-        '/sanpham.png',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-        '/sanpham.jpg',
-    ],
-};
+
 function ProductDetails() {
+    const { id } = useParams();
+
+    const product = useSelector((state) => {
+        return state.product?.products.find((product) => product.id === id);
+    });
+
     const [size, setSize] = useState('s');
     const [quantity, setQuantity] = useState(1);
-    const [currentImage, setImage] = useState(product.images[0]);
+    const [currentImage, setImage] = useState(product.images[0].url);
+
     const increaseQuantity = () => {
         if (quantity >= parseInt(product.quantity)) return;
         setQuantity((prev) => prev + 1);
@@ -53,21 +42,19 @@ function ProductDetails() {
 
     return (
         <>
-            <Nav>
-                HOME <span>&#62;</span> PRODUCT DETAILS
-            </Nav>
             <Container>
                 <ImageContainer>
                     <ListImg className="align-center-flex" id="scrollbar">
                         {product.images.map((image, i) => (
                             <div
-                                onClick={() => setImage(image)}
-                                className={`item ${image === currentImage ? 'active' : ''}`}
+                                key={i}
+                                onClick={() => setImage(image.url)}
+                                className={`item ${image.url === currentImage ? 'active' : ''}`}
                             >
-                                <img key={i} src={image} alt="san pham" />
+                                <img src={image.url} alt="san pham" />
                             </div>
                         ))}
-                        <div class="force-overflow"></div>
+                        <div className="force-overflow"></div>
                     </ListImg>
                     <MainImg>
                         <img src={currentImage} alt="san pham" />
@@ -81,7 +68,7 @@ function ProductDetails() {
                             <i>
                                 <AiFillStar />
                             </i>
-                            <span>{product.star}</span>
+                            <span>{product.likes}</span>
                         </span>
                         <span className="view">
                             <span>{product.rating}</span> Đánh giá
@@ -93,14 +80,15 @@ function ProductDetails() {
                     <p className="heading-s">Giá</p>
                     <Price>
                         <span className="original">&#8363;{Number(product.price).toLocaleString('en-US')}</span>
-                        {Number(product.price * (1 - product.sale / 100)).toLocaleString('en-US')} &#8363;
+                        {Number(product.price * (1 - product.discount / 100)).toLocaleString('en-US')} &#8363;
                     </Price>
                     <p className="heading-s">Size sản phẩm: </p>
                     <Size>
-                        {btns.map((btn) => (
+                        {btns.map((btn, i) => (
                             <button
+                                key={i}
                                 onClick={() => setSize(btn)}
-                                className={`size btn btn-s btn-outline ${btn.match(size) ? 'active' : ''}`}
+                                className={`size btn btn-outline ${btn === size ? 'active' : ''}`}
                             >
                                 {btn}
                             </button>
@@ -110,14 +98,14 @@ function ProductDetails() {
                     <Quantity>
                         <button
                             onClick={() => decreaseQuantity()}
-                            className={`up btn btn-outline btn-s ${quantity > 0 ? '' : 'disable'}`}
+                            className={`up btn btn-outline ${quantity > 0 ? '' : 'disable'}`}
                         >
                             <AiOutlineMinus />
                         </button>
                         <p className="quantity">{quantity}</p>
                         <button
                             onClick={() => increaseQuantity()}
-                            className={`up btn btn-outline btn-s ${quantity >= product.quantity ? 'disable' : ' '}`}
+                            className={`up btn btn-outline ${quantity >= product.quantity ? 'disable' : ' '}`}
                         >
                             <AiOutlinePlus />
                         </button>

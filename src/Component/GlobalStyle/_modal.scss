@@ -1,0 +1,58 @@
+.modal {
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &_header {
+        font-size: 1.8rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    &_content {
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    &_actions {
+        display: flex;
+        gap: 0 10px;
+    }
+
+    &_close {
+        outline: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #7f8c8d;
+        padding: 5px;
+        opacity: 0.8;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+.modal-container {
+    padding: 40px 20px;
+}
+.popup-content {
+    margin: auto;
+    background: rgb(255, 255, 255);
+    width: fit-content;
+    border-radius: 6px;
+}
+.popup-arrow {
+    color: rgb(255, 255, 255);
+}
+
+.popup-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}

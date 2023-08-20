@@ -5,7 +5,7 @@ function Searchbar() {
         <Searchbox>
             <form action="#">
                 <input type="text" placeholder="search..." />
-                <button className="btn btn-primary btn-s">
+                <button className="search-icon">
                     <IoSearchOutline />
                 </button>
             </form>

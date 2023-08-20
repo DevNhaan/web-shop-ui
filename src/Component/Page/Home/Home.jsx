@@ -1,22 +1,15 @@
-import { styled } from 'styled-components';
-import { TopProducts } from '../../Layout';
-
-const Banner = styled.section`
-    margin: 20px 0;
-    border-radius: 18px;
-    overflow: hidden;
-`;
+import { TopProducts, Parallax } from '../../Layout';
 
 function Home() {
     return (
-        <main className="container maxheight">
-            <Banner className="box-shadow-bottom">
-                <a href="#!">
-                    <img src="/banner.png" alt="banner" />
-                </a>
-            </Banner>
-            <TopProducts />
-        </main>
+        <>
+            <Parallax height={600} url={'/banner/banner-dev-shop.png'} />
+            <main className="container maxheight">
+                <TopProducts />
+            </main>
+
+            <Parallax height={250} url={'/banner/banner-nho.png'} />
+        </>
     );
 }
 

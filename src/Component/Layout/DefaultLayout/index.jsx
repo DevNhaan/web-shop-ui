@@ -6,7 +6,7 @@ function DefaultLayout({ children }) {
         <>
             <Header />
             <NavigateBar />
-            {children}
+            <main>{children}</main>
             <Footer />
         </>
     );
