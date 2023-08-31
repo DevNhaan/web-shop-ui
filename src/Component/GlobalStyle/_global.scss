@@ -95,6 +95,7 @@ a {
 }
 .line-hover {
     position: relative;
+    cursor: pointer;
     &::after {
         position: absolute;
         display: block;
@@ -117,6 +118,9 @@ a {
     }
     &-gray::after {
         background-color: var(--gray-color);
+    }
+    &-primary::after {
+        background-color: var(--primary-color);
     }
 }
 .box-shadow-bottom {
@@ -175,8 +179,25 @@ a {
     font-size: 1.2rem;
     color: var(--text-color);
     flex-shrink: 0;
+    width: max-content;
+    margin: 0 10px;
     &.primary {
         color: #fff;
         background-color: var(--primary-color);
     }
+}
+.error-message {
+    font-size: 1.4rem;
+    color: #e74c3c;
+    margin: 10px 0 20px 0;
+}
+
+.icon {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.full-vh {
+    height: 100vh;
 }

@@ -6,3 +6,5 @@ export { default as Cart } from './Cart';
 export { default as Profile } from './Profile';
 export { default as CheckoutDetails } from './CheckoutDetails/CheckoutDetails.jsx';
 export { default as Address } from './Address/Address.js';
+export { default as OrderComfirm } from './OrderComfirm/OrderConfirm.jsx';
+export { default as MyOrder } from './MyOrder/MyOrder.jsx';

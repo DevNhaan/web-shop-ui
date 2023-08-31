@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { addAddressAction, deleteAddressAction, updateUserDtails } from '../redux/Slide/AuthSlide';
+import { addAddressAction, deleteAddressAction, updateUserDetails } from '../redux/Slide/AuthSlide';
 
 export const addAddress = async (data, dispatch, axiosToken) => {
     try {
@@ -29,11 +29,21 @@ export const deleteAddress = async (id, dispatch, axiosToken) => {
 export const updateAddress = async (data, dispatch, axiosToken) => {
     try {
         const res = await axiosToken.put(`user/update-details/${data.id}`, data);
-        console.log(res.data.content);
-        dispatch(updateUserDtails(res.data.content));
-        toast.success('Cập nhật địa chỉ thành công');
+        dispatch(updateUserDetails(res.data.content));
+        toast.success('Đã đặt địa chỉ thành mặt định.');
     } catch (e) {
         console.log(e);
-        toast.error('Cập nhật địa chỉ thât bại.');
+        toast.error('Đặt địa chỉ mặt định thât bại.');
+    }
+};
+
+export const setDefaultAddressApi = async (data, dispatch, axiosToken) => {
+    try {
+        const res = await axiosToken.post(`address/set-default/${data.userId}/${data.addressId}`);
+        dispatch(addAddressAction(res.data.content));
+        toast.success('Đã đặt địa chỉ thành mặt định.');
+    } catch (e) {
+        console.log(e);
+        toast.error('Đặt địa chỉ mặt định thât bại.');
     }
 };

@@ -1,9 +1,9 @@
-import { TopProducts, Parallax } from '../../Layout';
+import { TopProducts, Parallax, Banner } from '../../Layout';
 
 function Home() {
     return (
         <>
-            <Parallax height={600} url={'/banner/banner-dev-shop.png'} />
+            <Banner />
             <main className="container maxheight">
                 <TopProducts />
             </main>

@@ -1,31 +1,5 @@
 import { styled } from 'styled-components';
 
-export const Infor = styled.div`
-    height: 100%;
-    padding: 20px;
-    background-color: var(--white-color);
-    display: flex;
-    flex-direction: column;
-    & .line {
-        flex: 1;
-    }
-`;
-export const AddressList = styled.div`
-    & .item {
-        padding: 10px 20px;
-        display: flex;
-        transition: all 0.3s ease-in-out;
-        gap: 0 10px;
-        cursor: pointer;
-        &:hover {
-            background: var(--primary-background-hover);
-        }
-        .icon {
-            color: var(--primary-color);
-        }
-    }
-`;
-
 export const Bill = styled.div`
     background-color: var(--white-color);
     padding: 20px;
@@ -44,7 +18,7 @@ export const Bill = styled.div`
         text-align: right;
         font-weight: 600;
     }
-    & span {
+    & .text {
         display: block;
         margin-top: 20px;
         color: var(--gray-color);
@@ -66,14 +40,12 @@ export const Bill = styled.div`
         -webkit-box-orient: vertical;
     }
     & .line {
+        margin: 10px 0;
+        display: block;
         width: 100%;
         height: 1px;
         background-color: var(--primary-color);
     }
-`;
-export const ItemWrap = styled.section`
-    background-color: var(--white-color);
-    border-radius: 6px;
 `;
 export const Voucher = styled.section`
     background-color: var(--white-color);
@@ -139,41 +111,6 @@ export const Item = styled.div`
     }
 `;
 
-export const Name = styled.p`
-    flex: 1;
-    flex-shrink: 0;
-    font-size: 1.6rem;
-    overflow: hidden;
-    font-weight: 600;
-    display: -webkit-box;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    text-align: start;
-`;
-export const Price = styled.p`
-    flex-shrink: 0;
-    width: 120px;
-    text-align: end;
-    color: var(--primary-color);
-    font-weight: 600;
-    font-size: 1.6rem;
-`;
-export const Quantity = styled.p`
-    flex-shrink: 0;
-    width: 100px;
-    text-align: center;
-    font-weight: 600;
-`;
-export const Address = styled.div`
-    display: flex;
-    justify-content: space-between;
-    & .title-dialog {
-        font-size: 1.8rem;
-        font-weight: 600;
-    }
-`;
 export const Container = styled.form`
     display: flex;
     flex-direction: column;
@@ -181,7 +118,6 @@ export const Container = styled.form`
     & button {
         font-size: 1.4rem;
         font-weight: 400;
-        padding: 4px 10px;
     }
     & button[type='submit'] {
         margin: 20px 0;

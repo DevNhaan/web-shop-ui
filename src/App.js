@@ -12,6 +12,7 @@ import { getToken, getUserId } from './redux/Selector/AuthSelector';
 import { getCartByUserId } from './Apis/CartApi';
 import httpRequest from './Apis/request';
 import { getProducts } from './redux/Selector/ProductSelector';
+import { getAllOrder } from './Apis/OrderApi';
 
 function App() {
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
     useEffect(() => {
         if (token) {
             getCartByUserId(userId, dispatch, axiosJwt);
+            getAllOrder(userId, dispatch, axiosJwt);
         }
         if (products.length === 0) {
             getAllProduct(dispatch);
