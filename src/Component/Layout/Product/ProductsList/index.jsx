@@ -1,10 +1,13 @@
-import { Description, ProductImg, ListWrap, Button } from './ProductsList.style';
+import { Description, ProductImg, ListWrap, ProductImgWrap, ButtonGroup } from './ProductsList.style';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getToken, getUserId } from '../../../../redux/Selector/AuthSelector';
 import { addProductToCart } from '../../../../Apis/CartApi';
 import httpRequest from '../../../../Apis/request';
-import { AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
+import { HiOutlineShoppingBag, HiSearch } from 'react-icons/hi';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 function ProductsList({ products }) {
     const dispatch = useDispatch();
@@ -30,20 +33,33 @@ function ProductsList({ products }) {
                 {products.map((product, index) => {
                     return (
                         <Link to={`/details/${product.id}`} key={index} className="item">
-                            <div className="img">
+                            <ProductImgWrap>
                                 <ProductImg>
                                     <img src={product.images[0].url} alt="product" />
                                 </ProductImg>
-                                <Button>
-                                    <button className="btn btn-s btn-primary">Mua ngay</button>
-                                    <button
-                                        onClick={(e) => addProductToCartHandle(e, product.id)}
-                                        className="btn btn-s btn-outline"
-                                    >
-                                        Thêm vào giỏ hàng
-                                    </button>
-                                </Button>
-                            </div>
+                                <div className="d-flex c-flex">
+                                    <Tippy content="Thêm vào giỏ hàng">
+                                        <button
+                                            className="icon add-to-cart"
+                                            onClick={(e) => addProductToCartHandle(e, product.id)}
+                                        >
+                                            <HiOutlineShoppingBag /> <span>Thêm vào giỏ hàng</span>
+                                        </button>
+                                    </Tippy>
+                                </div>
+                                <ButtonGroup>
+                                    <Tippy content="Tìm kiếm" placement="left">
+                                        <button className="search icon">
+                                            <HiSearch />
+                                        </button>
+                                    </Tippy>
+                                    <Tippy content="Thích sản phẩm" placement="left">
+                                        <button className="like icon">
+                                            <AiOutlineHeart />
+                                        </button>
+                                    </Tippy>
+                                </ButtonGroup>
+                            </ProductImgWrap>
                             <Description className="description">
                                 <span className="title">{product?.title}</span>
                                 <p className="name">{product?.name}</p>

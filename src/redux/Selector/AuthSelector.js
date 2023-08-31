@@ -8,9 +8,8 @@ export const inforUserSelector = createSelector(currentUserSelector, (currentUse
     }
 });
 export const defaultAddressSelector = createSelector(currentUserSelector, (currentUser) => {
-    if (currentUser && currentUser?.defaultAddress) {
-        return currentUser.userAddress.find((address) => address.id === currentUser.defaultAddress);
-    }
+    const defaultAddress = currentUser?.userAddress.find((address) => address.defaultAddress);
+    return defaultAddress;
 });
 export const isLogin = (state) => state.auth.login?.isLogin;
 

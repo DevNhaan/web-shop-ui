@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { registerFailure, logoutSuccess } from '../redux/Slide/AuthSlide';
 import { cartLogout } from '../redux/Slide/CartSlide';
+import { resetOrder } from '~/redux/Slide/OrderSlide';
 
 export const register = async (registerDto, dispatch, navigate) => {
     try {
@@ -21,6 +22,7 @@ export const logout = async (dispatch, navigate) => {
         const response = await axiosLogout.post('http://localhost:8080/api/v1/auth/logout');
         dispatch(logoutSuccess());
         dispatch(cartLogout());
+        dispatch(resetOrder());
         navigate('/auth/login');
 
         if (response.status === 401) return null;

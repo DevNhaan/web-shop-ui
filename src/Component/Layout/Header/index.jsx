@@ -1,12 +1,12 @@
 import Topbar from './Topbar';
-import NavBar from './Navbar';
+import HeaderMain from './HeaderMain';
 
 function Header() {
     return (
-        <header className="box-shadow-bottom">
+        <>
             <Topbar />
-            <NavBar />
-        </header>
+            <HeaderMain />
+        </>
     );
 }
 

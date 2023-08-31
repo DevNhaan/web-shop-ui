@@ -59,29 +59,58 @@ export const ProductImg = styled.div`
         transform: scale(1.2);
     }
 `;
-
-export const Button = styled.div`
+export const ButtonGroup = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 30%, transparent);
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    top: 0;
+    right: 0;
+    gap: 10px 0;
+    margin: 10px;
+    transition: all 0.3s linear;
+    z-index: 1;
     opacity: 0;
-    gap: 0 15px;
-    transition: all 0.3s ease-in-out;
-    z-index: 9999;
+
     & button {
-        border-radius: 6px;
+        border-radius: 50%;
+        color: #fff;
+        background-color: var(--primary-color);
+        transform: translateX(80px);
+    }
+`;
+
+export const ProductImgWrap = styled.div`
+    position: relative;
+    & button.add-to-cart {
+        position: absolute;
+        font-size: 1.8rem;
         color: var(--white-color);
-        font-size: 1.6rem;
-        margin-bottom: 20px;
+        top: 100%;
+        width: 0;
+        opacity: 0;
+        height: 0;
+        transition: all 0.2s ease-in-out;
+        transform: translateY(50px);
+        background-color: var(--primary-color);
+        & span {
+            margin-left: 10px;
+            font-size: 1.4rem;
+        }
+    }
+    &:hover button.add-to-cart {
+        opacity: 1;
+        height: auto;
+        width: 90%;
+        transform: translateY(-50px);
     }
     &:hover {
-        height: 100%;
-        opacity: 1;
+        ${ButtonGroup} {
+            opacity: 1;
+            transform: translateX(-80px);
+        }
+    }
+    & button {
+        padding: 10px;
     }
 `;

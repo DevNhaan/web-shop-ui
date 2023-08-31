@@ -24,14 +24,20 @@ export const TopRight = styled.div`
     }
 `;
 
-export const AuthContainer = styled.section`
-    &.stick {
-        position: sticky;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
+export const Header = styled.header`
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
     padding: 10px 0;
+    & .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
 `;
 export const Logo = styled.div`
     display: flex;
@@ -78,15 +84,18 @@ export const Searchbox = styled.section`
     }
 `;
 export const UserContainer = styled.section`
-    margin-left: auto;
     gap: 0 20px;
 `;
 export const Cart = styled.div`
+    position: relative;
     & a {
         width: max-content;
         display: flex;
         gap: 0 5px;
         font-weight: 600;
+    }
+    & .icon {
+        font-size: 2.8rem;
     }
     color: var(--black-color);
 `;
@@ -100,15 +109,26 @@ export const User = styled.label`
         display: hidden;
     }
 `;
-export const CartQuantiy = styled.div``;
+export const CartQuantiy = styled.span`
+    position: absolute;
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #e74c3c;
+    padding: 4px;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+`;
 
 export const Dropdown = styled.div`
     display: flex;
     flex-direction: column;
-    border-radius: 6px;
-    background-color: var(--white-color);
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-    z-index: 10000;
     & a,
     & div {
         cursor: pointer;
@@ -120,5 +140,10 @@ export const Dropdown = styled.div`
         &:hover {
             background-color: var(--background-white);
         }
+    }
+`;
+export const Like = styled.div`
+    & .icon {
+        font-size: 2.8rem;
     }
 `;

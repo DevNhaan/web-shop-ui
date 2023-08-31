@@ -1,0 +1,42 @@
+.button-next-slide,
+.button-prev-slide {
+    position: absolute;
+    color: #000;
+    font-size: 1.6rem;
+    background-color: #fff;
+    padding: 6px;
+    border-radius: 50%;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+.button-next-slide {
+    right: 0;
+    transform: translate(-50%, -50%);
+}
+
+.button-prev-slide {
+    left: 0;
+    transform: translate(50%, -50%);
+}
+.swiper {
+    position: relative;
+    &:hover .button-next-slide,
+    &:hover .button-prev-slide {
+        opacity: 1;
+    }
+}
+
+// Tippy
+.tippy-tooltip.light {
+    background-color: #fff;
+}
+.tippy-content {
+    padding: 0;
+}

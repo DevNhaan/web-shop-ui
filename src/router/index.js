@@ -1,4 +1,15 @@
-import { Home, Login, Register, DetailsProduct, Cart, Profile, CheckoutDetails, Address } from '../Component/Page';
+import {
+    Home,
+    Login,
+    Register,
+    DetailsProduct,
+    Cart,
+    Profile,
+    CheckoutDetails,
+    Address,
+    OrderComfirm,
+    MyOrder,
+} from '../Component/Page';
 import { DefaultLayout, AuthLayout } from '../Component/Layout';
 export const publicRoute = [
     {
@@ -37,6 +48,16 @@ export const publicRoute = [
     {
         path: '/user-address',
         component: Address,
+        layout: DefaultLayout,
+    },
+    {
+        path: '/order-comfirm',
+        component: OrderComfirm,
+        layout: DefaultLayout,
+    },
+    {
+        path: '/my-order',
+        component: MyOrder,
         layout: DefaultLayout,
     },
 ];

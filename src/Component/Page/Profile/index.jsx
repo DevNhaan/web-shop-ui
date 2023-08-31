@@ -5,18 +5,17 @@ import { BiLocationPlus } from 'react-icons/bi';
 import { AiOutlineWarning, AiFillWarning, AiOutlineMenu } from 'react-icons/ai';
 import { RiDeleteBack2Fill } from 'react-icons/ri';
 import { FaTimes } from 'react-icons/fa';
-import { getToken, inforUserSelector } from '../../../redux/Selector/AuthSelector.js';
+import { getToken, getUserId, inforUserSelector } from '../../../redux/Selector/AuthSelector.js';
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 
 import Popup from 'reactjs-popup';
-import { deleteAddress, updateAddress } from '../../../Apis/ProfileApi.js';
+import { deleteAddress, setDefaultAddressApi, updateAddress } from '../../../Apis/ProfileApi.js';
 import httpRequest from '../../../Apis/request.js';
 import { MdLocationPin } from 'react-icons/md';
 import Button from '~/Component/Button/index.js';
-import { setDefaultAddress } from '~/redux/Slide/AuthSlide.js';
 import { IoCloseOutline } from 'react-icons/io5';
 
 const validationSchema = yup.object({
@@ -28,9 +27,10 @@ const validationSchema = yup.object({
 });
 
 function Profile() {
-    const { email, defaultAddress = null, userAddress, username, ...inforUpdate } = useSelector(inforUserSelector);
+    const { email, userAddress, username, ...inforUpdate } = useSelector(inforUserSelector);
     const [edit, setEdit] = useState({});
     const token = useSelector(getToken);
+    const userId = useSelector(getUserId);
     const dispatch = useDispatch();
 
     const hiddenInfo = (string) => {
@@ -66,7 +66,14 @@ function Profile() {
         }
     };
     const handleSetDefaultAddress = (id) => {
-        dispatch(setDefaultAddress(id));
+        const data = {
+            userId,
+            addressId: id,
+        };
+        const axiosToken = httpRequest(token, dispatch);
+        if (axiosToken) {
+            setDefaultAddressApi(data, dispatch, axiosToken);
+        }
     };
     return (
         <Container className="container" onSubmit={formik.handleSubmit}>
@@ -144,10 +151,10 @@ function Profile() {
                 <strong>Địa chỉ: </strong>
                 <Address>
                     {userAddress.length > 0 ? (
-                        userAddress.map((a) => (
-                            <p className="address-item" key={a.id}>
-                                <BiLocationPlus /> {`${a.address}, ${a.district}, ${a.city}`}{' '}
-                                {defaultAddress === a.id ? (
+                        userAddress.map((address) => (
+                            <p className="address-item" key={address.id}>
+                                <BiLocationPlus /> {`${address.address}, ${address.district}, ${address.city}`}{' '}
+                                {address.defaultAddress ? (
                                     <span className="tag primary">Mặt định</span>
                                 ) : (
                                     <Popup
@@ -171,7 +178,7 @@ function Profile() {
                                                     <Button
                                                         type="button"
                                                         onClick={() => {
-                                                            handleSetDefaultAddress(a.id);
+                                                            handleSetDefaultAddress(address.id);
                                                             close();
                                                         }}
                                                         className="modal_button_action btn btn-warning"
@@ -215,7 +222,7 @@ function Profile() {
                                                     <button
                                                         type="button"
                                                         onClick={() => {
-                                                            handleDelete(a.id);
+                                                            handleDelete(address.id);
                                                             close();
                                                         }}
                                                         className="modal_button_action btn warning"

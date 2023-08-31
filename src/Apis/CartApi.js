@@ -24,11 +24,11 @@ export const addProductToCart = async (data, dispatch, axiosJwt) => {
     try {
         const response = await axiosJwt.post('cart/add-product', data);
 
+        console.log('items', response.data.content);
+
         dispatch(addCartItem(response.data.content));
 
-        dispatch(updateNumberOfItem());
-        dispatch(updateTotal());
-        dispatch(updateTotalOriginal());
+        update(dispatch);
 
         toast.success('Thêm sản phẩm thành công');
     } catch (error) {
@@ -40,9 +40,7 @@ export const changeQuantity = async (data, dispatch, axiosJwt) => {
     try {
         const response = await axiosJwt.put(`cart/cart-item/update/${data.cartItemId}/${data.type}`);
         dispatch(changeQuantityCartItem(response.data.content));
-        dispatch(updateNumberOfItem());
-        dispatch(updateTotal());
-        dispatch(updateTotalOriginal());
+        update(dispatch);
     } catch (error) {
         console.log(error);
     }
@@ -55,9 +53,7 @@ export const deleteCartItem = async (id, dispatch, axiosJwt) => {
 
         if (response.data.content) {
             dispatch(removeItem(id));
-            dispatch(updateNumberOfItem());
-            dispatch(updateTotal());
-            dispatch(updateTotalOriginal());
+            update(dispatch);
 
             toast.success('Xóa sản phẩm thành công');
         } else {
@@ -66,4 +62,9 @@ export const deleteCartItem = async (id, dispatch, axiosJwt) => {
         console.log(error);
         toast.error('Xóa sản phẩm thành công');
     }
+};
+const update = (dispatch) => {
+    dispatch(updateNumberOfItem());
+    dispatch(updateTotal());
+    dispatch(updateTotalOriginal());
 };

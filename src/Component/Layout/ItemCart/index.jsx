@@ -88,14 +88,13 @@ function ItemCart() {
                 </div>
                 <span className="line"></span>
 
-                <div className="discount">
-                    <input type="text" placeholder="Nhập mã giảm giá" />
-                    <button className="btn btn-outline">Áp dụng</button>
-                </div>
-
-                <Link to="/checkout" className="btn btn-primary btn-full">
-                    Mua hàng
-                </Link>
+                {total !== 0 ? (
+                    <Link to="/checkout" className="btn btn-primary btn-full">
+                        Mua hàng
+                    </Link>
+                ) : (
+                    <div className="primary-color">Chọn sản phẩm để tiến hành mua hàng</div>
+                )}
             </Order>
         </Container>
     );

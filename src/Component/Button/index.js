@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Button({ to, icon, href, disabled = false, children, className, onClick, ...passProps }) {
+function Button({ to, icon, href, disabled = false, children, onClick, ...passProps }) {
     let Comp = 'button';
     let props = {
         onClick,
@@ -14,17 +14,17 @@ function Button({ to, icon, href, disabled = false, children, className, onClick
         Comp = 'a';
     }
     //delete fucntion on when have disable attribute
-    if (disabled) {
-        Object.keys(props).forEach((key) => {
-            if (key.startsWith('on') && typeof props[key] === 'function') {
-                delete props[key];
-            }
-        });
-        delete props.to;
-        Comp = 'div';
-    }
+    // if (disabled) {
+    //     Object.keys(props).forEach((key) => {
+    //         if (key.startsWith('on') && typeof props[key] === 'function') {
+    //             delete props[key];
+    //         }
+    //     });
+    //     delete props.to;
+    //     Comp = 'div';
+    // }
     return (
-        <Comp className={className} {...props}>
+        <Comp {...props}>
             {icon && <span className="icon">{icon}</span>}
             <span>{children}</span>
         </Comp>

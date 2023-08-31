@@ -54,19 +54,9 @@ const authSlide = createSlice({
             );
         },
         addAddressAction: (state, action) => {
-            const addressId = state.login.currentUser.userDetail.userAddress.map((i) => i.id);
-
-            const newAddress = action.payload.find((address) => !addressId.includes(address.id));
-            if (newAddress) {
-                state.login.currentUser.userDetail.defaultAddress = newAddress.id;
-            }
-
             state.login.currentUser.userDetail.userAddress = action.payload;
         },
-        setDefaultAddress: (state, action) => {
-            state.login.currentUser.userDetail.defaultAddress = action.payload;
-        },
-        updateUserDtails: (state, action) => {
+        updateUserDetails: (state, action) => {
             state.login.currentUser.userDetail = action.payload;
         },
     },
@@ -81,6 +71,5 @@ export const {
     setToken,
     deleteAddressAction,
     addAddressAction,
-    updateUserDtails,
-    setDefaultAddress,
+    updateUserDetails,
 } = authSlide.actions;

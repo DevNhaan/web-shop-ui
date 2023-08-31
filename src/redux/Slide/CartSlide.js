@@ -11,10 +11,15 @@ const cartSlide = createSlice({
     },
     reducers: {
         setCart: (state, action) => {
-            state.cartItem = action.payload?.items;
+            state.cartItem = action.payload?.items || [];
+            state.total = 0;
+            state.numberOfItem = 0;
+            state.totalOriginal = 0;
+            state.cartItemUserSelect = [];
         },
         addItemToCartItemUserSelect: (state, action) => {
-            if (!state.cartItemUserSelect.includes(action.payload)) state.cartItemUserSelect.push(action.payload);
+            const itemId = action.payload;
+            if (!state.cartItemUserSelect.includes(itemId)) state.cartItemUserSelect.push(itemId);
         },
         removeItemToCartItemUserSelect: (state, action) => {
             state.cartItemUserSelect = state.cartItemUserSelect.filter((item) => item !== action.payload);
@@ -33,18 +38,19 @@ const cartSlide = createSlice({
             state.cartItem[index] = newItem;
         },
         addCartItem: (state, action) => {
-            const list = state.cartItem.map((item) => item.id);
-            const newItem = list.filter((obj) => !list.includes(obj.id));
-            console.log(newItem);
-            if (newItem) {
-                state.cartItemUserSelect = [...state.cartItemUserSelect, ...newItem];
+            const listId = state.cartItem.map((item) => item.id);
+            const newItems = action.payload.items.filter((item) => !listId.includes(item.id));
+            if (newItems || !listId) {
+                state.cartItemUserSelect.push(...newItems.map((item) => item.id));
             }
             state.cartItem = action.payload.items;
         },
         removeItem: (state, action) => {
-            state.cartItem = state.cartItem.filter((item) => item.id !== action.payload);
-            if (state.cartItemUserSelect.includes(action.payload))
-                state.cartItemUserSelect = state.cartItemUserSelect.filter((item) => item !== action.payload);
+            const removeItemId = action.payload;
+
+            state.cartItem = state.cartItem.filter((item) => item.id !== removeItemId);
+            if (state.cartItemUserSelect.includes(removeItemId))
+                state.cartItemUserSelect = state.cartItemUserSelect.filter((item) => item !== removeItemId);
         },
         cartLogout: (state) => {
             state.cartItem = [];

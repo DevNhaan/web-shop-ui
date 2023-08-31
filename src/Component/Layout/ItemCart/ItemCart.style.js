@@ -135,7 +135,7 @@ export const Order = styled.div`
         display: block;
         width: 100%;
         padding-top: 2px;
-        background-color: var(--gray-color);
+        background-color: var(--primary-color);
     }
     button {
         width: 100%;

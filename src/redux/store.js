@@ -1,4 +1,4 @@
-import { authSlide, productSlide, cartSlide, loadingSlide } from './Slide';
+import { authSlide, productSlide, cartSlide, loadingSlide, orderSlide } from './Slide';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
     product: productSlide.reducer,
     cart: cartSlide.reducer,
     loading: loadingSlide.reducer,
+    order: orderSlide.reducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
