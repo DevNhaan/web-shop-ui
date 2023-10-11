@@ -15,7 +15,7 @@ import Popup from 'reactjs-popup';
 import { deleteAddress, setDefaultAddressApi, updateAddress } from '../../../Apis/ProfileApi.js';
 import httpRequest from '../../../Apis/request.js';
 import { MdLocationPin } from 'react-icons/md';
-import Button from '~/Component/Button/index.js';
+import Button from '~/Component/Layout/Button/index.js';
 import { IoCloseOutline } from 'react-icons/io5';
 
 const validationSchema = yup.object({

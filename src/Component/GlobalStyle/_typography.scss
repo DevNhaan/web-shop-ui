@@ -12,3 +12,28 @@
     margin: 20px 0 15px 0;
     color: var(--text-color);
 }
+.heading-section {
+    text-align: center;
+    & span {
+        font-family: 'Satisfy', cursive;
+        font-size: 3.6rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        display: inline-flex;
+        justify-content: center;
+        text-transform: capitalize;
+        line-height: 1;
+        margin: 50px 0 20px 0;
+        word-spacing: 2px;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: '';
+            height: 4px;
+            top: 100%;
+            width: 100%;
+            background-color: var(--primary-color);
+        }
+    }
+}

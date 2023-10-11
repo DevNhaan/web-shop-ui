@@ -3,8 +3,8 @@ import { FaFacebook, FaInstagram, FaBell, FaQuestionCircle, FaGlobe } from 'reac
 
 function Topbar() {
     return (
-        <section className="background-black">
-            <TopBarContainer className="container c-flex">
+        <section className="background-primary">
+            <TopBarContainer className="container">
                 <TopLeft className="d-flex">
                     <span className="c-flex">
                         <label htmlFor="phone" className="line-hover line-hover-white">

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { logoutSuccess, setToken } from '../redux/Slide/AuthSlide';
+import { logoutSuccess, setToken } from '../redux/Slide/AuthSlice';
 import jwtDecode from 'jwt-decode';
 import store from '../redux/store';
 

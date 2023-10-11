@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import { logoutSuccess, setToken } from '../Slide/AuthSlide';
+import { logoutSuccess, setToken } from '../Slide/AuthSlice';
 import axios from 'axios';
 
 const TokenMiddleware = (store) => (next) => (action) => {

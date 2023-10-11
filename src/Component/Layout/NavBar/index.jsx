@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { AiOutlineDown } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
+import { useSelector } from 'react-redux';
 
 const Nav = styled.nav`
     margin: 20px 0;
@@ -17,15 +18,23 @@ const Nav = styled.nav`
 `;
 const Dropdown = styled.ul`
     background-color: var(--white-color);
-    padding: 10px;
+    min-width: 300px;
+    border-radius: 6px;
     & li a {
-        padding: 10px 8px;
+        padding: 10px 20px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        &:hover {
+            background-color: var(--background-white);
+        }
     }
 `;
 const ListItem = styled.li`
     text-transform: uppercase;
+    font-weight: 500;
 `;
 function NavBar() {
+    const categories = useSelector((state) => state.categories.categories);
     return (
         <Nav>
             <ul className="align-center-flex">
@@ -34,33 +43,39 @@ function NavBar() {
                         HOME
                     </Link>
                 </ListItem>
-                <Tippy
-                    content={
-                        <Dropdown>
-                            <li>
-                                <Link to="/hoodies">Hoodie</Link>
-                            </li>
-                            <li>
-                                <Link to="/sweater">Sweater</Link>
-                            </li>
-                        </Dropdown>
-                    }
-                    theme="light"
-                    animation="fade"
-                    arrow={false}
-                    trigger="mouseenter"
-                    interactive={true}
-                    placement="bottom"
-                >
-                    <ListItem className="item line-hover line-hover-primary">
-                        Danh mục sản phẩm <AiOutlineDown />
-                    </ListItem>
-                </Tippy>
-                <li>
+                <div>
+                    <Tippy
+                        content={
+                            <Dropdown>
+                                {categories?.map((cate) => (
+                                    <li key={cate.tag}>
+                                        <Link to={cate.tag}>{cate.title}</Link>
+                                    </li>
+                                ))}
+
+                                <li>
+                                    <Link to="/sweater">Coming soon</Link>
+                                </li>
+                            </Dropdown>
+                        }
+                        theme="light"
+                        animation="fade"
+                        arrow={false}
+                        trigger="mouseenter"
+                        interactive={true}
+                        placement="bottom"
+                    >
+                        <ListItem className="item line-hover line-hover-primary">
+                            Danh mục
+                            <AiOutlineDown size={12} />
+                        </ListItem>
+                    </Tippy>
+                </div>
+                <ListItem>
                     <Link className="item line-hover line-hover-primary" to="/">
                         Thông báo
                     </Link>
-                </li>
+                </ListItem>
             </ul>
         </Nav>
     );

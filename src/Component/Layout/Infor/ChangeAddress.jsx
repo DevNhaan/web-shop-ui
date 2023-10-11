@@ -1,7 +1,7 @@
 import { FaTimes } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import Popup from 'reactjs-popup';
-import Button from '~/Component/Button';
+import Button from '~/Component/Layout/Button';
 import { getToken, getUserId, inforUserSelector } from '~/redux/Selector/AuthSelector';
 import { FaLocationDot } from 'react-icons/fa6';
 import { AddressList } from './Infor.style';

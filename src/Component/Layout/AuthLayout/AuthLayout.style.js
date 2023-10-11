@@ -2,7 +2,8 @@ import { styled } from 'styled-components';
 
 export const Container = styled.main`
     background-color: #9ed0c5;
-    background: no-repeat center center/cover url('/background-login.jpg');
+    background: no-repeat center center/cover
+        url('https://res.cloudinary.com/devshopcloud/image/upload/v1694394565/devshop/banner/13686036_5185208_ale18a.jpg');
     width: 100%;
     height: 100vh;
     position: relative;
@@ -33,7 +34,6 @@ export const Form = styled.form`
     top: 50%;
     left: 50%;
     border-radius: 10px;
-    backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;

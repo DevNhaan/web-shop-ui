@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 export const Container = styled.form`
     display: flex;
     margin-bottom: 200px;
+    margin-top: 20px;
     & button[type='submit'] {
         margin-top: 40px;
     }

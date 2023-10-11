@@ -12,7 +12,7 @@ import {
     updateNumberOfItem,
     updateTotal,
     updateTotalOriginal,
-} from '../../../redux/Slide/CartSlide';
+} from '../../../redux/Slide/CartSlice';
 
 import { memo } from 'react';
 import { getToken } from '../../../redux/Selector/AuthSelector';

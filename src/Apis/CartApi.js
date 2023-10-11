@@ -6,7 +6,7 @@ import {
     updateTotalOriginal,
     changeQuantityCartItem,
     removeItem,
-} from '../../src/redux/Slide/CartSlide';
+} from '../redux/Slide/CartSlice';
 
 import { toast } from 'react-toastify';
 
@@ -23,8 +23,6 @@ export const addProductToCart = async (data, dispatch, axiosJwt) => {
     if (!axiosJwt) return null;
     try {
         const response = await axiosJwt.post('cart/add-product', data);
-
-        console.log('items', response.data.content);
 
         dispatch(addCartItem(response.data.content));
 

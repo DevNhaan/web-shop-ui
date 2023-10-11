@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 export const TopBarContainer = styled.div`
+    display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 36px;
     font-weight: 400;
     font-size: 1.4rem;
@@ -37,7 +39,7 @@ export const Header = styled.header`
     }
 
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    z-index: 9999;
+    z-index: 100;
 `;
 export const Logo = styled.div`
     display: flex;
@@ -94,9 +96,6 @@ export const Cart = styled.div`
         gap: 0 5px;
         font-weight: 600;
     }
-    & .icon {
-        font-size: 2.8rem;
-    }
     color: var(--black-color);
 `;
 export const User = styled.label`
@@ -142,8 +141,34 @@ export const Dropdown = styled.div`
         }
     }
 `;
-export const Like = styled.div`
-    & .icon {
-        font-size: 2.8rem;
+export const CartReview = styled.div`
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white-color);
+    border-radius: 6px;
+    padding: 20px 0;
+`;
+export const CartReviewItem = styled.div`
+    display: flex;
+    gap: 0 10px;
+    width: 100%;
+    padding: 10px 20px;
+    align-items: center;
+    & .img img {
+        width: 50px;
+        aspect-ratio: 1/1;
+        border-radius: 5px;
+    }
+    & .name {
+        flex-shrink: 0;
+        overflow-x: hidden;
+        flex: 1;
+    }
+    & .price {
+    }
+    &:hover {
+        background-color: var(--background-white);
     }
 `;

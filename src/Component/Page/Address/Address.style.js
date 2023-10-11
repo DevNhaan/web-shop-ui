@@ -7,6 +7,7 @@ export const Infor = styled.form`
     display: flex;
     flex-direction: column;
     border-radius: 6px;
+    margin-top: 20px;
     & .line {
         flex: 1;
     }

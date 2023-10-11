@@ -1,10 +1,15 @@
 import Header from '../Header';
 import Footer from '../Footer';
+import styled from 'styled-components';
+
+const Main = styled.main`
+    min-height: 100vh;
+`;
 function DefaultLayout({ children }) {
     return (
         <>
             <Header />
-            <main>{children}</main>
+            <Main>{children}</Main>
             <Footer />
         </>
     );

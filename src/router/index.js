@@ -9,13 +9,18 @@ import {
     Address,
     OrderComfirm,
     MyOrder,
+    Discover,
+    Searching,
 } from '../Component/Page';
-import { DefaultLayout, AuthLayout } from '../Component/Layout';
+import { AuthLayout } from '../Component/Layout';
 export const publicRoute = [
     {
         path: '/',
         component: Home,
-        layout: DefaultLayout,
+    },
+    {
+        path: '/discover',
+        component: Discover,
     },
     {
         path: '/auth/login',
@@ -38,26 +43,30 @@ export const publicRoute = [
     {
         path: '/my-cart',
         component: Cart,
-        layout: DefaultLayout,
     },
     {
         path: '/checkout',
         component: CheckoutDetails,
-        layout: DefaultLayout,
     },
     {
         path: '/user-address',
         component: Address,
-        layout: DefaultLayout,
     },
     {
         path: '/order-comfirm',
         component: OrderComfirm,
-        layout: DefaultLayout,
     },
     {
         path: '/my-order',
         component: MyOrder,
-        layout: DefaultLayout,
+    },
+    {
+        path: '/searching',
+        component: Searching,
+        children: [{ patch: ':keyword', component: Searching }],
+    },
+    {
+        path: 'categories',
+        children: [{ path: ':category' }],
     },
 ];

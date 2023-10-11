@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Breadcrumbs from '../../Breadcrumbs';
+import Breadcrumbs from '../../Layout/Breadcrumbs/Breadcrums';
 import ItemCart from '../../Layout/ItemCart';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

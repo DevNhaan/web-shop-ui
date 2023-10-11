@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { registerFailure, logoutSuccess } from '../redux/Slide/AuthSlide';
-import { cartLogout } from '../redux/Slide/CartSlide';
-import { resetOrder } from '~/redux/Slide/OrderSlide';
+import { registerFailure, logoutSuccess } from '../redux/Slide/AuthSlice';
+import { cartLogout } from '../redux/Slide/CartSlice';
+import { resetOrder } from '~/redux/Slide/OrderSlice';
 
 export const register = async (registerDto, dispatch, navigate) => {
     try {

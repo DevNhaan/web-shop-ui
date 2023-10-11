@@ -8,3 +8,5 @@ export { default as CheckoutDetails } from './CheckoutDetails/CheckoutDetails.js
 export { default as Address } from './Address/Address.js';
 export { default as OrderComfirm } from './OrderComfirm/OrderConfirm.jsx';
 export { default as MyOrder } from './MyOrder/MyOrder.jsx';
+export { default as Discover } from './Discover/Discover.jsx';
+export { default as Searching } from './Searching/Searching.jsx';

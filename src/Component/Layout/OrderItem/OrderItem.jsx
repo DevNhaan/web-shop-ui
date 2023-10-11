@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { Header, Item, ItemWrap, Name, Price, Quantity } from './OrderItem.style';
 
 function OrderItem({ items }) {
-    console.log(items);
     return (
         <ItemWrap>
             <Header className="item">

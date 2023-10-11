@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { addAddressAction, deleteAddressAction, updateUserDetails } from '../redux/Slide/AuthSlide';
+import { addAddressAction, deleteAddressAction, updateUserDetails } from '../redux/Slide/AuthSlice';
 
 export const addAddress = async (data, dispatch, axiosToken) => {
     try {

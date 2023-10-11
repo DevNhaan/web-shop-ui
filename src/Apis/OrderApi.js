@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { addOrder, setOrder } from '~/redux/Slide/OrderSlide';
+import { addOrder, setOrder } from '~/redux/Slide/OrderSlice';
 import { getCartByUserId } from './CartApi';
 
 export const createOrderApi = async (data, navigate, dispatch, axiosJwt) => {
@@ -7,7 +7,6 @@ export const createOrderApi = async (data, navigate, dispatch, axiosJwt) => {
     try {
         const response = await axiosJwt.post('/order', data);
 
-        console.log(response.data.content);
         dispatch(addOrder(response.data.content));
         toast.success('Đặt hàng thành công');
         navigate('/order-comfirm');
@@ -22,7 +21,6 @@ export const getAllOrder = async (userId, dispatch, axiosJwt) => {
     try {
         const response = await axiosJwt.get(`/order/${userId}`);
 
-        console.log(response.data.content);
         dispatch(setOrder(response.data.content));
     } catch (error) {
         console.log(error);

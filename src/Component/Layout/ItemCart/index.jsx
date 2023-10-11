@@ -16,7 +16,7 @@ import {
     updateNumberOfItem,
     updateTotal,
     updateTotalOriginal,
-} from '../../../redux/Slide/CartSlide';
+} from '../../../redux/Slide/CartSlice';
 import { Link } from 'react-router-dom';
 
 function ItemCart() {

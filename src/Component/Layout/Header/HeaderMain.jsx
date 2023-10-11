@@ -1,3 +1,4 @@
+import SearchBar from '~/Component/Search/SearchBar';
 import { NavBar } from '..';
 import UserSection from './UserSection';
 import { Logo, Header } from './header.style';
@@ -12,7 +13,10 @@ function HeaderMain() {
                     </Link>
                 </Logo>
                 <NavBar />
-                <UserSection />
+
+                <UserSection>
+                    <SearchBar />
+                </UserSection>
             </div>
         </Header>
     );

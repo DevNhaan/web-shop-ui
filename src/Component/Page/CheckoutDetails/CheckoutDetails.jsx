@@ -1,5 +1,5 @@
 import { Container, Bill, Wrapper, Voucher } from './CheckoutDetails.style';
-import Breadcrumbs from '../../Breadcrumbs';
+import Breadcrumbs from '../../Layout/Breadcrumbs/Breadcrums';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import { useDispatch, useSelector } from 'react-redux';
